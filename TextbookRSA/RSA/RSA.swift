@@ -9,13 +9,13 @@
 import Foundation
 
 /// A namespace for RSA functions and types.
-enum RSA {}
+public enum RSA {}
 
 extension RSA: RSAProtocol {
-    typealias UInteger = UInt
-    typealias Keys = RSAKeys
+    public typealias UInteger = UInt
+    public typealias Keys = RSAKeys
     
-    static func transform(_ block: UInteger, with parameters: TransformationParameters) -> UInteger {
+    public static func transform(_ block: UInteger, with parameters: TransformationParameters) -> UInteger {
         return 0 // TODO
     }
 }

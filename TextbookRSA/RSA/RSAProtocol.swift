@@ -9,7 +9,7 @@
 import Foundation
 
 public struct RSATransformationParameters<RSA: RSAProtocol> {
-    let modulo: RSA.UInteger
+    let modulo: RSA.Positive
     let exponent: RSA.UInteger
 }
 
@@ -18,7 +18,7 @@ public protocol RSAKeysProtocol {
     
     /// The two (secret) prime factors of the public key.
     var `private`: (p: RSA.Prime, q: RSA.Prime) { get }
-    var `public`: RSA.UInteger { get }
+    var `public`: RSA.Positive { get }
     
     /// Generate key-pair by choosing prime factors randomly.
     init()
@@ -36,6 +36,7 @@ public protocol RSAKeysProtocol {
 public protocol RSAProtocol {
     associatedtype UInteger: UnsignedInteger
     typealias Prime = Math.Prime<UInteger>
+    typealias Positive = Math.Positive<UInteger>
     
     associatedtype Keys: RSAKeysProtocol where Keys.RSA == Self
     

@@ -13,12 +13,12 @@ public struct RSAKeys: RSAKeysProtocol {
     
     public let `private`: (p: RSA.Prime, q: RSA.Prime)
     
-    public var `public`: RSA.UInteger {
-        return self.private.p.value * self.private.q.value
+    public var `public`: RSA.Positive {
+        return self.private.p * self.private.q
     }
     
     public init() {
-        self.init(privateP: try! RSA.Prime(2), privateQ: try! RSA.Prime(2)) // TODO
+        self.init(privateP: try! RSA.Prime(2), privateQ: try! RSA.Prime(3)) // TODO
     }
     
     public init(privateP: RSA.Prime, privateQ: RSA.Prime) {
@@ -26,10 +26,10 @@ public struct RSAKeys: RSAKeysProtocol {
     }
     
     public func generateEncryptionParameters() -> RSA.TransformationParameters {
-        return RSA.TransformationParameters(modulo: 0, exponent: 0) // TODO
+        return RSA.TransformationParameters(modulo: try! RSA.Positive(1), exponent: 0) // TODO
     }
     
     public func generateDecryptionParameters(for encryptionParameters: RSA.TransformationParameters) -> RSA.TransformationParameters {
-        return RSA.TransformationParameters(modulo: 0, exponent: 0) // TODO
+        return RSA.TransformationParameters(modulo: try! RSA.Positive(1), exponent: 0) // TODO
     }
 }

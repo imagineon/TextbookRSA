@@ -20,6 +20,11 @@ extension Math {
             
             self.value = value
         }
+        
+        static func *(left: Prime, right: Prime) -> Positive<Value> {
+            // Force try: We know that both values are prime numbers, so their product is not 0.
+            return try! Positive(left.value * right.value)
+        }
     }
     
     /**

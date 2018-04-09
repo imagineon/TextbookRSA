@@ -9,7 +9,10 @@
 /* Begin PBXBuildFile section */
 		7C30B0C2207B4DA200482BEC /* TextbookRSA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C30B0B8207B4DA200482BEC /* TextbookRSA.framework */; };
 		7C30B0C9207B4DA200482BEC /* TextbookRSA.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C30B0BB207B4DA200482BEC /* TextbookRSA.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7C30B0DA207B548200482BEC /* Prime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C30B0D9207B548200482BEC /* Prime.swift */; };
+		7C30B0DC207B5CBB00482BEC /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C30B0DB207B5CBB00482BEC /* Errors.swift */; };
 		7C30B0DE207B5E2900482BEC /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C30B0DD207B5E2900482BEC /* Math.swift */; };
+		7C30B0E3207B621100482BEC /* PrimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C30B0E2207B621100482BEC /* PrimeTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,7 +31,10 @@
 		7C30B0BC207B4DA200482BEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7C30B0C1207B4DA200482BEC /* TextbookRSATests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TextbookRSATests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C30B0C8207B4DA200482BEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7C30B0D9207B548200482BEC /* Prime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prime.swift; sourceTree = "<group>"; };
+		7C30B0DB207B5CBB00482BEC /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		7C30B0DD207B5E2900482BEC /* Math.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
+		7C30B0E2207B621100482BEC /* PrimeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimeTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +82,7 @@
 				7C30B0D2207B4E3900482BEC /* Math */,
 				7C30B0BB207B4DA200482BEC /* TextbookRSA.h */,
 				7C30B0BC207B4DA200482BEC /* Info.plist */,
+				7C30B0DB207B5CBB00482BEC /* Errors.swift */,
 			);
 			path = TextbookRSA;
 			sourceTree = "<group>";
@@ -83,6 +90,9 @@
 		7C30B0C5207B4DA200482BEC /* TextbookRSATests */ = {
 			isa = PBXGroup;
 			children = (
+				7C30B0DF207B61BC00482BEC /* ECB */,
+				7C30B0E0207B61C500482BEC /* RSA */,
+				7C30B0E1207B61CA00482BEC /* Math */,
 				7C30B0C8207B4DA200482BEC /* Info.plist */,
 			);
 			path = TextbookRSATests;
@@ -91,6 +101,7 @@
 		7C30B0D2207B4E3900482BEC /* Math */ = {
 			isa = PBXGroup;
 			children = (
+				7C30B0D9207B548200482BEC /* Prime.swift */,
 				7C30B0DD207B5E2900482BEC /* Math.swift */,
 			);
 			path = Math;
@@ -108,6 +119,28 @@
 			children = (
 			);
 			path = ECB;
+			sourceTree = "<group>";
+		};
+		7C30B0DF207B61BC00482BEC /* ECB */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ECB;
+			sourceTree = "<group>";
+		};
+		7C30B0E0207B61C500482BEC /* RSA */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = RSA;
+			sourceTree = "<group>";
+		};
+		7C30B0E1207B61CA00482BEC /* Math */ = {
+			isa = PBXGroup;
+			children = (
+				7C30B0E2207B621100482BEC /* PrimeTests.swift */,
+			);
+			path = Math;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,6 +210,7 @@
 					};
 					7C30B0C0207B4DA200482BEC = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -221,6 +255,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C30B0DC207B5CBB00482BEC /* Errors.swift in Sources */,
+				7C30B0DA207B548200482BEC /* Prime.swift in Sources */,
 				7C30B0DE207B5E2900482BEC /* Math.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -229,6 +265,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C30B0E3207B621100482BEC /* PrimeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,6 +442,8 @@
 		7C30B0D0207B4DA200482BEC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 22M69L86LW;
@@ -412,6 +451,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.imagineon.TextbookRSATests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -419,6 +459,8 @@
 		7C30B0D1207B4DA200482BEC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 22M69L86LW;

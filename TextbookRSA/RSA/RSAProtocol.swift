@@ -16,13 +16,20 @@ public struct RSATransformationParameters<RSA: RSAProtocol> {
 public protocol RSAKeysProtocol {
     associatedtype RSA: RSAProtocol
     
+    /// The two (secret) prime factors of the public key.
     var `private`: (p: RSA.Prime, q: RSA.Prime) { get }
     var `public`: RSA.UInteger { get }
     
+    /// Generate key-pair by choosing prime factors randomly.
     init()
+    
+    /// Initialize key-pair for given prime factors.
     init(privateP: RSA.Prime, privateQ: RSA.Prime)
     
+    /// Generate parameters for encryption by randomly choosing a suitable exponent.
     func generateEncryptionParameters() -> RSA.TransformationParameters
+    
+    /// Generate parameters for decryption by (modulo-) inverting the exponent in the given `encryptionParameters`.
     func generateDecryptionParameters(for encryptionParameters: RSA.TransformationParameters) -> RSA.TransformationParameters
 }
 
@@ -33,5 +40,7 @@ public protocol RSAProtocol {
     associatedtype Keys: RSAKeysProtocol where Keys.RSA == Self
     
     typealias TransformationParameters = RSATransformationParameters<Self>
+    
+    /// Apply modular exponentiation to the block (exponent and modulo are in the parameters). Used for both encryption and decryption.
     static func transform(_ block: UInteger, with parameters: TransformationParameters) -> UInteger
 }

@@ -13,5 +13,6 @@ enum Error: Swift.Error {
     
     enum MathError {
         case primeFromNonPrimeValue
+        case positiveFromZero
     }
 }

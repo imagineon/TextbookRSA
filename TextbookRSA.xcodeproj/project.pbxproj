@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7C30B0C2207B4DA200482BEC /* TextbookRSA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C30B0B8207B4DA200482BEC /* TextbookRSA.framework */; };
 		7C30B0C9207B4DA200482BEC /* TextbookRSA.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C30B0BB207B4DA200482BEC /* TextbookRSA.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7C30B0D8207B521500482BEC /* RSAProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C30B0D7207B521500482BEC /* RSAProtocol.swift */; };
 		7C30B0DA207B548200482BEC /* Prime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C30B0D9207B548200482BEC /* Prime.swift */; };
 		7C30B0DC207B5CBB00482BEC /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C30B0DB207B5CBB00482BEC /* Errors.swift */; };
 		7C30B0DE207B5E2900482BEC /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C30B0DD207B5E2900482BEC /* Math.swift */; };
@@ -31,6 +32,7 @@
 		7C30B0BC207B4DA200482BEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7C30B0C1207B4DA200482BEC /* TextbookRSATests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TextbookRSATests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C30B0C8207B4DA200482BEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7C30B0D7207B521500482BEC /* RSAProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSAProtocol.swift; sourceTree = "<group>"; };
 		7C30B0D9207B548200482BEC /* Prime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prime.swift; sourceTree = "<group>"; };
 		7C30B0DB207B5CBB00482BEC /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		7C30B0DD207B5E2900482BEC /* Math.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 		7C30B0D3207B4E4700482BEC /* RSA */ = {
 			isa = PBXGroup;
 			children = (
+				7C30B0D7207B521500482BEC /* RSAProtocol.swift */,
 			);
 			path = RSA;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C30B0D8207B521500482BEC /* RSAProtocol.swift in Sources */,
 				7C30B0DC207B5CBB00482BEC /* Errors.swift in Sources */,
 				7C30B0DA207B548200482BEC /* Prime.swift in Sources */,
 				7C30B0DE207B5E2900482BEC /* Math.swift in Sources */,

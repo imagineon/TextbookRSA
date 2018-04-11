@@ -10,9 +10,14 @@ import Foundation
 
 enum Error: Swift.Error {
     case math(MathError)
+    case rsa(RSAError)
     
     enum MathError {
         case primeFromNonPrimeValue
         case positiveFromZero
+    }
+    
+    enum RSAError {
+        case invalidPrivateKeys
     }
 }

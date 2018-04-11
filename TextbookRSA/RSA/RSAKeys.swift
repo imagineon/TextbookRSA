@@ -18,10 +18,14 @@ public struct RSAKeys: RSAKeysProtocol {
     }
     
     public init() {
-        self.init(privateP: try! RSA.Prime(2), privateQ: try! RSA.Prime(3)) // TODO
+        try! self.init(privateP: try! RSA.Prime(2), privateQ: try! RSA.Prime(3)) // TODO
     }
     
-    public init(privateP: RSA.Prime, privateQ: RSA.Prime) {
+    public init(privateP: RSA.Prime, privateQ: RSA.Prime) throws {
+        guard RSAKeys.areValidPrivateKeys(privateP: privateP, privateQ: privateQ) else {
+            throw Error.rsa(.invalidPrivateKeys)
+        }
+        
         self.private = (p: privateP, q: privateQ)
     }
     
@@ -31,5 +35,9 @@ public struct RSAKeys: RSAKeysProtocol {
     
     public func generateDecryptionParameters(for encryptionParameters: RSA.TransformationParameters) -> RSA.TransformationParameters {
         return RSA.TransformationParameters(modulo: try! RSA.Positive(1), exponent: 0) // TODO
+    }
+    
+    private static func areValidPrivateKeys(privateP: RSA.Prime, privateQ: RSA.Prime) -> Bool {
+        return privateP.value != privateQ.value
     }
 }

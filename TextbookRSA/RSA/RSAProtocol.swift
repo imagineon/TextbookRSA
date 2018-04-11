@@ -24,7 +24,7 @@ public protocol RSAKeysProtocol {
     init()
     
     /// Initialize key-pair for given prime factors.
-    init(privateP: RSA.Prime, privateQ: RSA.Prime)
+    init(privateP: RSA.Prime, privateQ: RSA.Prime) throws
     
     /// Generate parameters for encryption by randomly choosing a suitable exponent.
     func generateEncryptionParameters() -> RSA.TransformationParameters

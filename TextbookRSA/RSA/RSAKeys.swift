@@ -42,7 +42,17 @@ public struct RSAKeys: RSAKeysProtocol {
     }
     
     public init() {
-        try! self.init(privateP: try! RSA.Prime(2), privateQ: try! RSA.Prime(3)) // TODO
+        let randomPrime: () -> RSA.Prime = { return RSA.Prime.randomInOpenRange(min: 0, count: try! Math.Positive<UInt32>(UInt32.max)) }
+        
+        var privateP = randomPrime()
+        var privateQ = randomPrime()
+        
+        while !RSAKeys.areValidPrivateKeys(privateP: privateP, privateQ: privateQ) {
+            privateP = randomPrime()
+            privateQ = randomPrime()
+        }
+
+        self.private = (p: privateP, q: privateQ)
     }
     
     public init(privateP: RSA.Prime, privateQ: RSA.Prime) throws {

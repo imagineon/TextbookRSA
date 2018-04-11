@@ -20,5 +20,10 @@ extension Math {
             
             self.value = value
         }
+        
+        static func *(left: Positive, right: Positive) -> Positive<Value> {
+            // Force try: We know that both values are positive numbers, so their product is also positive.
+            return try! Positive(left.value * right.value)
+        }
     }
 }

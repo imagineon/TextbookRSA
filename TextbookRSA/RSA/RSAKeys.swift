@@ -20,6 +20,18 @@ fileprivate extension RSAKeysProtocol {
     }
 }
 
+fileprivate extension Math.Prime where Value == UInt {
+    static func randomInOpenRange(min: UInt, count: Math.Positive<UInt32>) -> Math.Prime<UInt> {
+        while true {
+            let value = UInt.randomInOpenRange(min: min, count: count)
+            
+            if let prime = try? Math.Prime(value) {
+                return prime
+            }
+        }
+    }
+}
+
 public struct RSAKeys: RSAKeysProtocol {
     public typealias RSA = TextbookRSA.RSA
     

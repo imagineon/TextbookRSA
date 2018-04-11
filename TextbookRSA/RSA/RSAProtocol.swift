@@ -29,8 +29,8 @@ public protocol RSAKeysProtocol {
     /// Generate parameters for encryption by randomly choosing a suitable exponent.
     func generateEncryptionParameters() -> RSA.TransformationParameters
     
-    /// Generate parameters for decryption by (modulo-) inverting the exponent in the given `encryptionParameters`.
-    func generateDecryptionParameters(for encryptionParameters: RSA.TransformationParameters) -> RSA.TransformationParameters
+    /// Generate parameters for decryption by inverting the given `encryptionExponent` (modulo the Euler totient of the public key), if possible.
+    func generateDecryptionParameters(forEncryptionExponent encryptionExponent: RSA.UInteger) -> RSA.TransformationParameters?
 }
 
 public protocol RSAProtocol {

@@ -8,6 +8,18 @@
 
 import Foundation
 
+fileprivate extension Math {
+    static func eulerTotient<Value>(_ prime: Math.Prime<Value>) -> Math.Positive<Value> {
+        return try! Math.Positive(prime.value - 1)
+    }
+}
+
+fileprivate extension RSAKeysProtocol {
+    var eulerTotient: RSA.Positive {
+        return Math.eulerTotient(self.private.p) * Math.eulerTotient(self.private.q)
+    }
+}
+
 public struct RSAKeys: RSAKeysProtocol {
     public typealias RSA = TextbookRSA.RSA
     
@@ -33,8 +45,10 @@ public struct RSAKeys: RSAKeysProtocol {
         return RSA.TransformationParameters(modulo: try! RSA.Positive(1), exponent: 0) // TODO
     }
     
-    public func generateDecryptionParameters(for encryptionParameters: RSA.TransformationParameters) -> RSA.TransformationParameters {
-        return RSA.TransformationParameters(modulo: try! RSA.Positive(1), exponent: 0) // TODO
+    public func generateDecryptionParameters(forEncryptionExponent encryptionExponent: RSA.UInteger) -> RSA.TransformationParameters? {
+        return encryptionExponent.inverse(modulo: eulerTotient).map { decryptionExponent in
+            RSA.TransformationParameters(modulo: self.public, exponent: decryptionExponent)
+        }
     }
     
     private static func areValidPrivateKeys(privateP: RSA.Prime, privateQ: RSA.Prime) -> Bool {

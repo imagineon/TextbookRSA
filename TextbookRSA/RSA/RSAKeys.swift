@@ -14,7 +14,7 @@ public struct RSAKeys: RSAKeysProtocol {
     public let `private`: (p: RSA.Prime, q: RSA.Prime)
     
     public var `public`: RSA.Positive {
-        return self.private.p * self.private.q
+        return self.private.p.positive * self.private.q.positive
     }
     
     public init() {

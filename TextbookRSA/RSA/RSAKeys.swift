@@ -62,7 +62,18 @@ public struct RSAKeys: RSAKeysProtocol {
     }
     
     public func generateEncryptionParameters() -> RSA.TransformationParameters {
-        return RSA.TransformationParameters(modulo: try! RSA.Positive(1), exponent: 0) // TODO
+        var exponent: UInt
+        let totient = eulerTotient.value
+        let halfTotient = try! Math.Positive<UInt32>(UInt32(totient / 2))
+        
+        repeat {
+            // We know that `totient` is an even number, and we want `exponent` to be coprime with it, so it
+            // needs to be odd. That's why we restrict our search to the odd numbers `1, 3, ... , totient - 1`.
+            let random = UInt.randomInRange(min: 0, count: halfTotient)
+            exponent = (2 * random) + 1
+        } while !Math.areCoprime(exponent, totient)
+        
+        return RSA.TransformationParameters(modulo: self.public, exponent: exponent)
     }
     
     public func generateDecryptionParameters(forEncryptionExponent encryptionExponent: RSA.UInteger) -> RSA.TransformationParameters? {

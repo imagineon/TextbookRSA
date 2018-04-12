@@ -90,6 +90,14 @@ public struct RSAKeys: RSAKeysProtocol {
         return tooMuch - 1
     }()
     
+    /// At least one of the two prime factors of the public key must be less than the square root of the upper bound for
+    /// the public key, so this square root can be used to restrict our search for one of the prime factors.
+    static let smallestPrimeFactorUpperBound: UInt =  {
+        let quarterBitWidth = UInt.bitWidth / 4
+        let tooMuch = UInt(1) << quarterBitWidth
+        return tooMuch - 1
+    }()
+    
     private static func areValidPrivateKeys(privateP: RSA.Prime, privateQ: RSA.Prime) -> Bool {
         // First check: The primes must be distinct.
         guard privateP.value != privateQ.value else { return false }

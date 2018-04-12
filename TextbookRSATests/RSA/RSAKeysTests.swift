@@ -23,4 +23,18 @@ class RSAKeysTests: XCTestCase {
         let tooMuch = bound + 1
         XCTAssertTrue(tooMuch.multipliedReportingOverflow(by: tooMuch).overflow)
     }
+    
+    func testSmallestPrimeFactorUpperBound() {
+        let primeFactorBound = RSAKeys.smallestPrimeFactorUpperBound
+        let publicKeyBound = RSAKeys.publicKeyUpperBound
+        
+        let (square, overflow) = primeFactorBound.multipliedReportingOverflow(by: primeFactorBound)
+        XCTAssertFalse(overflow)
+        XCTAssertLessThanOrEqual(square, publicKeyBound)
+        
+        let tooMuch = primeFactorBound + 1
+        let (tooMuchSquare, tooMuchOverflow) = tooMuch.multipliedReportingOverflow(by: tooMuch)
+        XCTAssertFalse(tooMuchOverflow)
+        XCTAssertGreaterThan(tooMuchSquare, publicKeyBound)
+    }
 }

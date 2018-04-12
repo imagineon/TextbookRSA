@@ -71,8 +71,8 @@ public struct RSAKeys: RSAKeysProtocol {
         }
     }
     
-    // The public key must be less than or equal to the square root of `UInt.max`. This makes sure the multiplications
-    // inside `UInt.power(...)` do not overflow. We also have the guarantee that this bound is representable as UInt32.
+    /// The public key must be less than or equal to the square root of `UInt.max`. This makes sure the multiplications
+    /// inside `UInt.power(...)` do not overflow. We also have the guarantee that this bound is representable as UInt32.
     static let publicKeyUpperBound: UInt = {
         let halfBitWidth = UInt.bitWidth / 2
         let tooMuch = UInt(1) << halfBitWidth

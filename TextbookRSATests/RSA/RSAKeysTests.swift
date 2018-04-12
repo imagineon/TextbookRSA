@@ -38,9 +38,9 @@ class RSAKeysTests: XCTestCase {
         XCTAssertGreaterThan(tooMuchSquare, publicKeyBound)
     }
     
-    func testGenerationTime() {
+    func testKeyGenerationTime() {
         let (keys, totalKeyGenTime) = Timing.evaluate {
-            return (0 ..< 1000).map { _ in return RSA.Keys() }
+            return (0 ..< 1_000).map { _ in return RSA.Keys() }
         }
         
         guard let averageKeyGenTime = totalKeyGenTime.map({ $0 / TimeInterval(keys.count) }) else {
@@ -49,5 +49,20 @@ class RSAKeysTests: XCTestCase {
         }
         
         XCTAssertLessThan(averageKeyGenTime, 0.001)
+    }
+    
+    func testEncryptionParametersGenerationTime() {
+        let keys = (0 ..< 1_000).map { _ in return RSA.Keys() }
+        
+        let (parms, totalParmsGenTime) = Timing.evaluate {
+            return keys.map { $0.generateEncryptionParameters() }
+        }
+        
+        guard let averageParmsGenTime = totalParmsGenTime.map({ $0 / TimeInterval(parms.count) }) else {
+            XCTFail("Could not measure time of random encryption parameters generation.")
+            return
+        }
+
+        XCTAssertLessThan(averageParmsGenTime, 0.001)
     }
 }

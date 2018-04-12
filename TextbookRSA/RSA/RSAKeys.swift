@@ -46,8 +46,13 @@ public struct RSAKeys: RSAKeysProtocol {
         var privateQ: RSA.Prime
         
         repeat {
-            privateP = RSA.Prime.randomInRange(min: 2, count: try! Math.Positive<UInt32>(UInt32(RSAKeys.publicKeyUpperBound / 2)))
-            privateQ = RSA.Prime.randomInRange(min: 2, count: try! Math.Positive<UInt32>(UInt32(RSAKeys.publicKeyUpperBound / privateP.value)))
+            let minP = UInt(2)
+            let maxP = RSAKeys.smallestPrimeFactorUpperBound
+            privateP = RSA.Prime.randomInRange(min: minP, count: try! Math.Positive<UInt32>(UInt32(maxP - minP)))
+            
+            let minQ = privateP.value + 1
+            let maxQ = RSAKeys.publicKeyUpperBound / privateP.value
+            privateQ = RSA.Prime.randomInRange(min: minQ, count: try! Math.Positive<UInt32>(UInt32(maxQ - minQ)))
         } while !RSAKeys.areValidPrivateKeys(privateP: privateP, privateQ: privateQ)
 
         self.private = (p: privateP, q: privateQ)

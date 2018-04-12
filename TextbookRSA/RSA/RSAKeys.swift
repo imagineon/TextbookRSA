@@ -73,7 +73,21 @@ public struct RSAKeys: RSAKeysProtocol {
         }
     }
     
+    // The public key must be less than or equal to the square root of `UInt.max`. This makes sure the multiplications
+    // inside `UInt.power(...)` do not overflow. We also have the guarantee that this bound is representable as UInt32.
+    static let publicKeyUpperBound: UInt = {
+        let halfBitWidth = UInt.bitWidth / 2
+        let tooMuch = UInt(1) << halfBitWidth
+        return tooMuch - 1
+    }()
+    
     private static func areValidPrivateKeys(privateP: RSA.Prime, privateQ: RSA.Prime) -> Bool {
-        return privateP.value != privateQ.value
+        // First check: The primes must be distinct.
+        guard privateP.value != privateQ.value else { return false }
+        
+        // Second check: The public key is small enough.
+        guard privateP.value * privateQ.value <= publicKeyUpperBound else { return false }
+        
+        return true
     }
 }

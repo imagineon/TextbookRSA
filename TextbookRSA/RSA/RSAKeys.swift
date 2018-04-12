@@ -21,9 +21,9 @@ fileprivate extension RSAKeysProtocol {
 }
 
 fileprivate extension Math.Prime where Value == UInt {
-    static func randomInOpenRange(min: UInt, count: Math.Positive<UInt32>) -> Math.Prime<UInt> {
+    static func randomInRange(min: UInt, count: Math.Positive<UInt32>) -> Math.Prime<UInt> {
         while true {
-            let value = UInt.randomInOpenRange(min: min, count: count)
+            let value = UInt.randomInRange(min: min, count: count)
             
             if let prime = try? Math.Prime(value) {
                 return prime
@@ -46,8 +46,8 @@ public struct RSAKeys: RSAKeysProtocol {
         var privateQ: RSA.Prime
         
         repeat {
-            privateP = RSA.Prime.randomInOpenRange(min: 2, count: try! Math.Positive<UInt32>(UInt32(RSAKeys.publicKeyUpperBound / 2)))
-            privateQ = RSA.Prime.randomInOpenRange(min: 2, count: try! Math.Positive<UInt32>(UInt32(RSAKeys.publicKeyUpperBound / privateP.value)))
+            privateP = RSA.Prime.randomInRange(min: 2, count: try! Math.Positive<UInt32>(UInt32(RSAKeys.publicKeyUpperBound / 2)))
+            privateQ = RSA.Prime.randomInRange(min: 2, count: try! Math.Positive<UInt32>(UInt32(RSAKeys.publicKeyUpperBound / privateP.value)))
         } while !RSAKeys.areValidPrivateKeys(privateP: privateP, privateQ: privateQ)
 
         self.private = (p: privateP, q: privateQ)

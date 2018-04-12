@@ -20,6 +20,7 @@
 		7C48B161207F53F700F0C05D /* RSAKeysTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C48B160207F53F700F0C05D /* RSAKeysTests.swift */; };
 		7C48B163207F942900F0C05D /* GCD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C48B162207F942900F0C05D /* GCD.swift */; };
 		7C48B165207F943F00F0C05D /* GCDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C48B164207F943F00F0C05D /* GCDTests.swift */; };
+		7C48B167207FA09D00F0C05D /* Timing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C48B166207FA09D00F0C05D /* Timing.swift */; };
 		7C5933C4207B7911008801DE /* Positive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5933C3207B7911008801DE /* Positive.swift */; };
 		7C5933C8207CA4C6008801DE /* Bit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5933C7207CA4C6008801DE /* Bit.swift */; };
 		7C5933CA207CBCC3008801DE /* BitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5933C9207CBCC3008801DE /* BitTests.swift */; };
@@ -56,6 +57,7 @@
 		7C48B160207F53F700F0C05D /* RSAKeysTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSAKeysTests.swift; sourceTree = "<group>"; };
 		7C48B162207F942900F0C05D /* GCD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCD.swift; sourceTree = "<group>"; };
 		7C48B164207F943F00F0C05D /* GCDTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDTests.swift; sourceTree = "<group>"; };
+		7C48B166207FA09D00F0C05D /* Timing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timing.swift; sourceTree = "<group>"; };
 		7C5933C3207B7911008801DE /* Positive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Positive.swift; sourceTree = "<group>"; };
 		7C5933C7207CA4C6008801DE /* Bit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bit.swift; sourceTree = "<group>"; };
 		7C5933C9207CBCC3008801DE /* BitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitTests.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				7C30B0E0207B61C500482BEC /* RSA */,
 				7C30B0E1207B61CA00482BEC /* Math */,
 				7C30B0C8207B4DA200482BEC /* Info.plist */,
+				7C48B166207FA09D00F0C05D /* Timing.swift */,
 			);
 			path = TextbookRSATests;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				7C30B0E3207B621100482BEC /* PrimeTests.swift in Sources */,
 				7C5933CA207CBCC3008801DE /* BitTests.swift in Sources */,
 				7C48B165207F943F00F0C05D /* GCDTests.swift in Sources */,
+				7C48B167207FA09D00F0C05D /* Timing.swift in Sources */,
 				7C5933CE207CCA2A008801DE /* ModularExponentiationTests.swift in Sources */,
 				7C5933D2207CD163008801DE /* ModularInverseTests.swift in Sources */,
 				7C48B161207F53F700F0C05D /* RSAKeysTests.swift in Sources */,

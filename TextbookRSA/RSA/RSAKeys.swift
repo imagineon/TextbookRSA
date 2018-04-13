@@ -37,7 +37,7 @@ public struct RSAKeys: RSAKeysProtocol {
     
     public let `private`: (p: RSA.Prime, q: RSA.Prime)
     
-    public var `public`: RSA.MoreThanOne {
+    public var `public`: RSA.GreaterThanOne {
         return self.private.p * self.private.q
     }
     

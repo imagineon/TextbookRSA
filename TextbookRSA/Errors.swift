@@ -14,8 +14,8 @@ enum Error: Swift.Error {
     
     enum MathError {
         case primeFromNonPrimeValue
-        case positiveFromZero
-        case moreThanOneFromZeroOrOne
+        case positiveFromLessThanOrEqualToZero
+        case greaterThanOneFromLessThanOrEqualToOne
     }
     
     enum RSAError {

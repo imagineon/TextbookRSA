@@ -9,13 +9,13 @@
 import Foundation
 
 extension Math {
-    /// Wrapper around an unsigned integral value which guarantees the value is not 0.
-    public struct Positive<Value: UnsignedInteger> {
+    /// Wrapper around an integral value which guarantees the value is greater than 0.
+    public struct Positive<Value: BinaryInteger> {
         let value: Value
         
         init(_ value: Value) throws {
             guard value > 0 else {
-                throw Error.math(.positiveFromZero)
+                throw Error.math(.positiveFromLessThanOrEqualToZero)
             }
             
             self.value = value
@@ -27,12 +27,13 @@ extension Math {
         }
     }
     
-    public struct MoreThanOne<Value: UnsignedInteger> {
+    /// Wrapper around an integral value which guarantees the value is greater than 1.
+    public struct GreaterThanOne<Value: BinaryInteger> {
         let value: Value
         
         init(_ value: Value) throws {
             guard value > 1 else {
-                throw Error.math(.moreThanOneFromZeroOrOne)
+                throw Error.math(.greaterThanOneFromLessThanOrEqualToOne)
             }
             
             self.value = value
@@ -41,17 +42,13 @@ extension Math {
         var positive: Positive<Value> {
             return try! Positive(value)
         }
-        
-        func usedBitWidth() -> MoreThanOne<UInt> {
-            return try! MoreThanOne<UInt>(value.usedBitWidth())
-        }
     }
 }
 
 extension UnsignedInteger {
-    func usedBitWidth() -> UInt {
-        var exponent: UInt = 0
-        var powerOfTwo: UInt = 1
+    func usedBitWidth() -> Int {
+        var exponent: Int = 0
+        var powerOfTwo: Self = 1
         
         while powerOfTwo <= self {
             exponent += 1
@@ -59,5 +56,11 @@ extension UnsignedInteger {
         }
         
         return exponent
+    }
+}
+
+extension Math.GreaterThanOne where Value: UnsignedInteger {
+    func usedBitWidth() -> Math.GreaterThanOne<Int> {
+        return try! Math.GreaterThanOne<Int>(value.usedBitWidth())
     }
 }

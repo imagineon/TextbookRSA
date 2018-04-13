@@ -21,8 +21,8 @@ extension Math {
             self.value = value
         }
         
-        var positive: Positive<Value> {
-            return try! Positive(value)
+        static func *(left: Prime, right: Prime) -> GreaterThanOne<Value> {
+            return try! GreaterThanOne(left.value * right.value)
         }
     }
     

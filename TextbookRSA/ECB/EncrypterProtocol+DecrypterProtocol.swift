@@ -8,15 +8,22 @@
 
 import Foundation
 
+public struct EncryptedData<ECB: ECBProtocol, RSA: RSAProtocol> {
+    let blocks: [ECB.Block]
+    let usedEncryptionExponent: RSA.UInteger
+}
+
 public protocol EncrypterProtocol {
     associatedtype RSA: RSAProtocol
     associatedtype ECB: ECBProtocol where ECB.Block == RSA.UInteger
     
-    static func encrypt(_ data: Data, parameters: RSA.TransformationParameters) -> (blocks: [ECB.Block], usedEncryptionExponent: RSA.UInteger)
+    typealias EncryptedData = TextbookRSA.EncryptedData<ECB, RSA>
+    
+    static func encrypt(_ data: Data, parameters: RSA.TransformationParameters) -> EncryptedData
 }
 
 extension EncrypterProtocol {
-    static func encrypt(_ text: String, parameters: RSA.TransformationParameters) -> (blocks: [ECB.Block], usedEncryptionExponent: RSA.UInteger) {
+    static func encrypt(_ text: String, parameters: RSA.TransformationParameters) -> EncryptedData {
         let data = text.data(using: .utf16)!
         return encrypt(data, parameters: parameters)
     }
@@ -26,8 +33,10 @@ public protocol DecrypterProtocol {
     associatedtype RSA: RSAProtocol
     associatedtype ECB: ECBProtocol where ECB.Block == RSA.UInteger
     
+    typealias EncryptedData = TextbookRSA.EncryptedData<ECB, RSA>
+    
     var keys: RSA.Keys { get }
-    func decrypt(_ blocks: [ECB.Block], encryptedWith exponent: RSA.UInteger) -> Data?
+    func decrypt(_ encryptedData: EncryptedData) -> Data?
 }
 
 extension DecrypterProtocol {
@@ -35,7 +44,7 @@ extension DecrypterProtocol {
         return keys.generateEncryptionParameters()
     }
     
-    func decryptText(_ blocks: [ECB.Block], encryptedWith exponent: RSA.UInteger) -> String? {
-        return decrypt(blocks, encryptedWith: exponent).map { String(data: $0, encoding: .utf16) }.flatMap { $0 }
+    func decryptText(_ encryptedData: EncryptedData) -> String? {
+        return decrypt(encryptedData).map { String(data: $0, encoding: .utf16) }.flatMap { $0 }
     }
 }

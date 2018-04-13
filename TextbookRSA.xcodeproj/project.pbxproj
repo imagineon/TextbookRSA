@@ -22,6 +22,7 @@
 		7C48B165207F943F00F0C05D /* GCDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C48B164207F943F00F0C05D /* GCDTests.swift */; };
 		7C48B167207FA09D00F0C05D /* Timing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C48B166207FA09D00F0C05D /* Timing.swift */; };
 		7C48B1692080953400F0C05D /* RSATests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C48B1682080953400F0C05D /* RSATests.swift */; };
+		7C48B16B20809BDA00F0C05D /* ECB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C48B16A20809BDA00F0C05D /* ECB.swift */; };
 		7C48B16D20809BF800F0C05D /* ECBProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C48B16C20809BF800F0C05D /* ECBProtocol.swift */; };
 		7C48B16F20809C2300F0C05D /* EncrypterProtocol+DecrypterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C48B16E20809C2300F0C05D /* EncrypterProtocol+DecrypterProtocol.swift */; };
 		7C5933C4207B7911008801DE /* Positive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5933C3207B7911008801DE /* Positive.swift */; };
@@ -62,6 +63,7 @@
 		7C48B164207F943F00F0C05D /* GCDTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDTests.swift; sourceTree = "<group>"; };
 		7C48B166207FA09D00F0C05D /* Timing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timing.swift; sourceTree = "<group>"; };
 		7C48B1682080953400F0C05D /* RSATests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSATests.swift; sourceTree = "<group>"; };
+		7C48B16A20809BDA00F0C05D /* ECB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECB.swift; sourceTree = "<group>"; };
 		7C48B16C20809BF800F0C05D /* ECBProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECBProtocol.swift; sourceTree = "<group>"; };
 		7C48B16E20809C2300F0C05D /* EncrypterProtocol+DecrypterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EncrypterProtocol+DecrypterProtocol.swift"; sourceTree = "<group>"; };
 		7C5933C3207B7911008801DE /* Positive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Positive.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				7C48B16C20809BF800F0C05D /* ECBProtocol.swift */,
+				7C48B16A20809BDA00F0C05D /* ECB.swift */,
 				7C48B16E20809C2300F0C05D /* EncrypterProtocol+DecrypterProtocol.swift */,
 			);
 			path = ECB;
@@ -328,6 +331,7 @@
 				7C30B0D8207B521500482BEC /* RSAProtocol.swift in Sources */,
 				7C5933CC207CC60E008801DE /* ModularExponentiation.swift in Sources */,
 				7C30B0DC207B5CBB00482BEC /* Errors.swift in Sources */,
+				7C48B16B20809BDA00F0C05D /* ECB.swift in Sources */,
 				7C48B16D20809BF800F0C05D /* ECBProtocol.swift in Sources */,
 				7C30B0E7207B729000482BEC /* RSA.swift in Sources */,
 				7C5933C8207CA4C6008801DE /* Bit.swift in Sources */,

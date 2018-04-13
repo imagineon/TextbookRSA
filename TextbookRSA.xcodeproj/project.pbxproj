@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7C0905492080B3B300FFCF3E /* PositiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0905482080B3B300FFCF3E /* PositiveTests.swift */; };
+		7C22B0F02081036200C53C82 /* ECBTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C22B0EF2081036200C53C82 /* ECBTests.swift */; };
 		7C30B0C2207B4DA200482BEC /* TextbookRSA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C30B0B8207B4DA200482BEC /* TextbookRSA.framework */; };
 		7C30B0C9207B4DA200482BEC /* TextbookRSA.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C30B0BB207B4DA200482BEC /* TextbookRSA.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7C30B0D8207B521500482BEC /* RSAProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C30B0D7207B521500482BEC /* RSAProtocol.swift */; };
@@ -48,6 +49,7 @@
 
 /* Begin PBXFileReference section */
 		7C0905482080B3B300FFCF3E /* PositiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveTests.swift; sourceTree = "<group>"; };
+		7C22B0EF2081036200C53C82 /* ECBTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECBTests.swift; sourceTree = "<group>"; };
 		7C30B0B8207B4DA200482BEC /* TextbookRSA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TextbookRSA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C30B0BB207B4DA200482BEC /* TextbookRSA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextbookRSA.h; sourceTree = "<group>"; };
 		7C30B0BC207B4DA200482BEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 		7C30B0DF207B61BC00482BEC /* ECB */ = {
 			isa = PBXGroup;
 			children = (
+				7C22B0EF2081036200C53C82 /* ECBTests.swift */,
 			);
 			path = ECB;
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 				7C48B167207FA09D00F0C05D /* Timing.swift in Sources */,
 				7C5933CE207CCA2A008801DE /* ModularExponentiationTests.swift in Sources */,
 				7C5933D2207CD163008801DE /* ModularInverseTests.swift in Sources */,
+				7C22B0F02081036200C53C82 /* ECBTests.swift in Sources */,
 				7C48B161207F53F700F0C05D /* RSAKeysTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

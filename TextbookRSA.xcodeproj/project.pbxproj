@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7C0905492080B3B300FFCF3E /* Encrypter+DecrypterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0905482080B3B300FFCF3E /* Encrypter+DecrypterTests.swift */; };
+		7C0905492080B3B300FFCF3E /* PositiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0905482080B3B300FFCF3E /* PositiveTests.swift */; };
 		7C30B0C2207B4DA200482BEC /* TextbookRSA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C30B0B8207B4DA200482BEC /* TextbookRSA.framework */; };
 		7C30B0C9207B4DA200482BEC /* TextbookRSA.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C30B0BB207B4DA200482BEC /* TextbookRSA.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7C30B0D8207B521500482BEC /* RSAProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C30B0D7207B521500482BEC /* RSAProtocol.swift */; };
@@ -47,7 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7C0905482080B3B300FFCF3E /* Encrypter+DecrypterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encrypter+DecrypterTests.swift"; sourceTree = "<group>"; };
+		7C0905482080B3B300FFCF3E /* PositiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveTests.swift; sourceTree = "<group>"; };
 		7C30B0B8207B4DA200482BEC /* TextbookRSA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TextbookRSA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C30B0BB207B4DA200482BEC /* TextbookRSA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextbookRSA.h; sourceTree = "<group>"; };
 		7C30B0BC207B4DA200482BEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -181,7 +181,6 @@
 		7C30B0DF207B61BC00482BEC /* ECB */ = {
 			isa = PBXGroup;
 			children = (
-				7C0905482080B3B300FFCF3E /* Encrypter+DecrypterTests.swift */,
 			);
 			path = ECB;
 			sourceTree = "<group>";
@@ -198,6 +197,7 @@
 		7C30B0E1207B61CA00482BEC /* Math */ = {
 			isa = PBXGroup;
 			children = (
+				7C0905482080B3B300FFCF3E /* PositiveTests.swift */,
 				7C30B0E2207B621100482BEC /* PrimeTests.swift */,
 				7C5933CD207CCA2A008801DE /* ModularExponentiationTests.swift */,
 				7C5933D1207CD163008801DE /* ModularInverseTests.swift */,
@@ -361,7 +361,7 @@
 				7C5933CA207CBCC3008801DE /* BitTests.swift in Sources */,
 				7C48B1692080953400F0C05D /* RSATests.swift in Sources */,
 				7C48B165207F943F00F0C05D /* GCDTests.swift in Sources */,
-				7C0905492080B3B300FFCF3E /* Encrypter+DecrypterTests.swift in Sources */,
+				7C0905492080B3B300FFCF3E /* PositiveTests.swift in Sources */,
 				7C48B167207FA09D00F0C05D /* Timing.swift in Sources */,
 				7C5933CE207CCA2A008801DE /* ModularExponentiationTests.swift in Sources */,
 				7C5933D2207CD163008801DE /* ModularInverseTests.swift in Sources */,

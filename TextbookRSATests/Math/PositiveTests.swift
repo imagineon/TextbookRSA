@@ -1,5 +1,5 @@
 //
-//  Encrypter+DecrypterTests.swift
+//  PositiveTests.swift
 //  TextbookRSATests
 //
 //  Created by Tomás Silveira Salles on 13.04.18.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import TextbookRSA
 
-class EncrypterPlusDecrypterTests: XCTestCase {
+class PositiveTests: XCTestCase {
     func testUsedBitWidth() {
         XCTAssertEqual(UInt(0).usedBitWidth(), 0)
         XCTAssertEqual(UInt(1).usedBitWidth(), 1)

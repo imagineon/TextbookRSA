@@ -11,7 +11,7 @@ import Foundation
 public struct ECB: ECBProtocol {
     public typealias Block = UInt
     
-    let blockSize: UInt
+    let blockSize: Math.Positive<UInt>
     
     public func chop(_ data: Data) -> [Block] {
         return [] // TODO

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7C0905492080B3B300FFCF3E /* PositiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0905482080B3B300FFCF3E /* PositiveTests.swift */; };
+		7C1E76A8208129170002A5F7 /* EncrypterAndDecrypterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1E76A7208129170002A5F7 /* EncrypterAndDecrypterTests.swift */; };
 		7C22B0F02081036200C53C82 /* ECBTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C22B0EF2081036200C53C82 /* ECBTests.swift */; };
 		7C30B0C2207B4DA200482BEC /* TextbookRSA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C30B0B8207B4DA200482BEC /* TextbookRSA.framework */; };
 		7C30B0C9207B4DA200482BEC /* TextbookRSA.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C30B0BB207B4DA200482BEC /* TextbookRSA.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -49,6 +50,7 @@
 
 /* Begin PBXFileReference section */
 		7C0905482080B3B300FFCF3E /* PositiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveTests.swift; sourceTree = "<group>"; };
+		7C1E76A7208129170002A5F7 /* EncrypterAndDecrypterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncrypterAndDecrypterTests.swift; sourceTree = "<group>"; };
 		7C22B0EF2081036200C53C82 /* ECBTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECBTests.swift; sourceTree = "<group>"; };
 		7C30B0B8207B4DA200482BEC /* TextbookRSA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TextbookRSA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C30B0BB207B4DA200482BEC /* TextbookRSA.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextbookRSA.h; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				7C22B0EF2081036200C53C82 /* ECBTests.swift */,
+				7C1E76A7208129170002A5F7 /* EncrypterAndDecrypterTests.swift */,
 			);
 			path = ECB;
 			sourceTree = "<group>";
@@ -364,6 +367,7 @@
 				7C5933CA207CBCC3008801DE /* BitTests.swift in Sources */,
 				7C48B1692080953400F0C05D /* RSATests.swift in Sources */,
 				7C48B165207F943F00F0C05D /* GCDTests.swift in Sources */,
+				7C1E76A8208129170002A5F7 /* EncrypterAndDecrypterTests.swift in Sources */,
 				7C0905492080B3B300FFCF3E /* PositiveTests.swift in Sources */,
 				7C48B167207FA09D00F0C05D /* Timing.swift in Sources */,
 				7C5933CE207CCA2A008801DE /* ModularExponentiationTests.swift in Sources */,

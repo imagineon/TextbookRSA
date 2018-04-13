@@ -15,7 +15,7 @@ extension Encrypter: EncrypterProtocol {
     public typealias ECB = TextbookRSA.ECB
     
     public static func encrypt(_ data: Data, parameters: RSA.TransformationParameters) -> (blocks: [ECB.Block], usedEncryptionExponent: RSA.UInteger) {
-        let ecb = ECB(blockSize: UInt(parameters.modulo.value.usedBitWidth()) - 1)
+        let ecb = ECB(blockSize: parameters.modulo.usedBitWidth().value - 1)
         return encrypt(data, parameters: parameters, ecb: ecb)
     }
 }
@@ -27,22 +27,8 @@ public struct Decrypter: DecrypterProtocol {
     public let keys: RSA.Keys
 
     public func decrypt(_ blocks: [ECB.Block], encryptedWith exponent: RSA.UInteger) -> Data? {
-        let ecb = ECB(blockSize: UInt(keys.public.value.usedBitWidth()) - 1)
+        let ecb = ECB(blockSize: keys.public.usedBitWidth().value - 1)
         return decrypt(blocks, encryptedWith: exponent, ecb: ecb)
-    }
-}
-
-extension UnsignedInteger {
-    func usedBitWidth() -> UInt {
-        var exponent: UInt = 0
-        var powerOfTwo: UInt = 1
-        
-        while powerOfTwo <= self {
-            exponent += 1
-            powerOfTwo <<= 1
-        }
-        
-        return exponent
     }
 }
 

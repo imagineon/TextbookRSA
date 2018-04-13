@@ -41,5 +41,23 @@ extension Math {
         var positive: Positive<Value> {
             return try! Positive(value)
         }
+        
+        func usedBitWidth() -> MoreThanOne<UInt> {
+            return try! MoreThanOne<UInt>(value.usedBitWidth())
+        }
+    }
+}
+
+extension UnsignedInteger {
+    func usedBitWidth() -> UInt {
+        var exponent: UInt = 0
+        var powerOfTwo: UInt = 1
+        
+        while powerOfTwo <= self {
+            exponent += 1
+            powerOfTwo <<= 1
+        }
+        
+        return exponent
     }
 }

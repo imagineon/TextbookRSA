@@ -14,7 +14,7 @@ extension Math {
         let value: Value
         
         init(_ value: Value) throws {
-            guard value != 0 else {
+            guard value > 0 else {
                 throw Error.math(.positiveFromZero)
             }
             
@@ -24,6 +24,22 @@ extension Math {
         static func *(left: Positive, right: Positive) -> Positive<Value> {
             // Force try: We know that both values are positive numbers, so their product is also positive.
             return try! Positive(left.value * right.value)
+        }
+    }
+    
+    public struct MoreThanOne<Value: UnsignedInteger> {
+        let value: Value
+        
+        init(_ value: Value) throws {
+            guard value > 1 else {
+                throw Error.math(.moreThanOneFromZeroOrOne)
+            }
+            
+            self.value = value
+        }
+        
+        var positive: Positive<Value> {
+            return try! Positive(value)
         }
     }
 }

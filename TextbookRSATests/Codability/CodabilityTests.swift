@@ -33,6 +33,15 @@ class CodabilityTests: XCTestCase {
         let jsonDataNoExponent = jsonStringNoExponent.data(using: .utf8)!
         XCTAssertThrowsError(try JSONDecoder().decode(RSA.TransformationParameters.self, from: jsonDataNoExponent))
         
+        let jsonStringNoModulo = """
+            {
+                "exponent": 7
+            }
+        """
+        
+        let jsonDataNoModulo = jsonStringNoModulo.data(using: .utf8)!
+        XCTAssertThrowsError(try JSONDecoder().decode(RSA.TransformationParameters.self, from: jsonDataNoModulo))
+        
         let jsonStringSmallModulo = """
             {
                 "modulo": 1,

@@ -21,8 +21,10 @@ class CodabilityTests: XCTestCase {
         let validJsonData = validJsonString.data(using: .utf8)!
         let validParms = try? JSONDecoder().decode(RSA.TransformationParameters.self, from: validJsonData)
         XCTAssertNotNil(validParms)
-        XCTAssertEqual(validParms?.modulo.value, 5)
-        XCTAssertEqual(validParms?.exponent, 7)
+        if let validParms = validParms {
+            XCTAssertEqual(validParms.modulo.value, 5)
+            XCTAssertEqual(validParms.exponent, 7)
+        }
         
         let jsonStringNoExponent = """
             {
@@ -58,10 +60,14 @@ class CodabilityTests: XCTestCase {
         let encoded = try? JSONEncoder().encode(parms)
         XCTAssertNotNil(encoded)
         
-        let decoded = encoded.map { try? JSONDecoder().decode(RSA.TransformationParameters.self, from: $0) }.flatMap { $0 }
-        XCTAssertNotNil(decoded)
-        XCTAssertEqual(decoded?.modulo.value, parms.modulo.value)
-        XCTAssertEqual(decoded?.exponent, parms.exponent)
+        if let encoded = encoded {
+            let decoded = try? JSONDecoder().decode(RSA.TransformationParameters.self, from: encoded)
+            XCTAssertNotNil(decoded)
+            if let decoded = decoded {
+                XCTAssertEqual(decoded.modulo.value, parms.modulo.value)
+                XCTAssertEqual(decoded.exponent, parms.exponent)
+            }
+        }
     }
     
     func testDecodingKeys() {
@@ -75,8 +81,10 @@ class CodabilityTests: XCTestCase {
         let validJsonData = validJsonString.data(using: .utf8)!
         let validKeys = try? JSONDecoder().decode(RSA.Keys.self, from: validJsonData)
         XCTAssertNotNil(validKeys)
-        XCTAssertEqual(validKeys?.private.p.value, 5)
-        XCTAssertEqual(validKeys?.private.q.value, 7)
+        if let validKeys = validKeys {
+            XCTAssertEqual(validKeys.private.p.value, 5)
+            XCTAssertEqual(validKeys.private.q.value, 7)
+        }
         
         let jsonStringNoQ = """
             {
@@ -142,10 +150,14 @@ class CodabilityTests: XCTestCase {
         let encoded = try? JSONEncoder().encode(keys)
         XCTAssertNotNil(encoded)
         
-        let decoded = encoded.map { try? JSONDecoder().decode(RSA.Keys.self, from: $0) }.flatMap { $0 }
-        XCTAssertNotNil(decoded)
-        XCTAssertEqual(decoded?.private.p.value, keys.private.p.value)
-        XCTAssertEqual(decoded?.private.q.value, keys.private.q.value)
+        if let encoded = encoded {
+            let decoded = try? JSONDecoder().decode(RSA.Keys.self, from: encoded)
+            XCTAssertNotNil(decoded)
+            if let decoded = decoded {
+                XCTAssertEqual(decoded.private.p.value, keys.private.p.value)
+                XCTAssertEqual(decoded.private.q.value, keys.private.q.value)
+            }
+        }
     }
     
     func testDecodingEncryptedData() {

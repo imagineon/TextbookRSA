@@ -27,3 +27,25 @@ extension RSATransformationParameters {
         self.exponent = try container.decode(RSA.UInteger.self, forKey: .exponent)
     }
 }
+
+fileprivate enum RSAKeysProtocolCodingKeys: String, CodingKey {
+    case privateP = "prime_p"
+    case privateQ = "prime_q"
+}
+
+extension RSAKeysProtocol {
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: RSAKeysProtocolCodingKeys.self)
+        try container.encode(self.private.p.value, forKey: .privateP)
+        try container.encode(self.private.q.value, forKey: .privateQ)
+    }
+    
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: RSAKeysProtocolCodingKeys.self)
+        let pValue = try container.decode(RSA.UInteger.self, forKey: .privateP)
+        let privateP = try RSA.GreaterThanOne(pValue)
+        let qValue = try container.decode(RSA.UInteger.self, forKey: .privateQ)
+        let privateQ = try RSA.GreaterThanOne(qValue)
+        try self.init(privateP: privateP, privateQ: privateQ)
+    }
+}

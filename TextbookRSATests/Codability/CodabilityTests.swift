@@ -54,4 +54,12 @@ class CodabilityTests: XCTestCase {
         XCTAssertEqual(decoded?.modulo.value, parms.modulo.value)
         XCTAssertEqual(decoded?.exponent, parms.exponent)
     }
+    
+    func testDecodingKeys() {
+        // TODO
+    }
+    
+    func testEncodingKeys() {
+        // TODO
+    }
 }

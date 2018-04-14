@@ -13,7 +13,7 @@ public struct RSATransformationParameters<RSA: RSAProtocol>: Codable {
     let exponent: RSA.UInteger
 }
 
-public protocol RSAKeysProtocol {
+public protocol RSAKeysProtocol: Codable {
     associatedtype RSA: RSAProtocol
     
     /// The two (secret) prime factors of the public key.

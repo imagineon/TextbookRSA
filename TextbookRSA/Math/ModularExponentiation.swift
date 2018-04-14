@@ -8,33 +8,67 @@
 
 import Foundation
 
-public extension UnsignedInteger {
-    /// Returns an array of length `end` where the `i`-th entry is `self^(2^i) (mod modulo)`
-    private func binaryPowers(upTo end: UInt, modulo: Math.Positive<Self>) -> [Self] {
-        guard end > 0 else { return [] }
-
-        var currentPower = self % modulo.value
-        var result = [currentPower]
-
-        for _ in 1 ..< end {
-            currentPower = (currentPower * currentPower) % modulo.value
-            result.append(currentPower)
+extension Math {
+    /**
+     This class efficiently computes modular exponentiation for unsigned integer types.
+     Not only the computation of each individual power is efficient, but especially the
+     bulk computation of different powers of the same base over the same ring (i.e. just
+     with different exponents).
+     
+     If you wish to compute "b^e (mod m)" for fixed "b" and "m" but with many different "e",
+     you should create and keep one such `PowerOracle` and use its `power` function, instead
+     of calling `b.power(e, modulo: m)` each time.
+     */
+    public class PowerOracle<Value: UnsignedInteger> {
+        let base: Value
+        let modulo: Math.Positive<Value>
+        
+        init(base: Value, modulo: Math.Positive<Value>) {
+            self.base = base
+            self.modulo = modulo
         }
+        
+        func power(exponent: Value) -> Value {
+            guard modulo.value != 1 else { return 0 }
 
-        return result
+            var result = Value(1)
+            
+            let exponentBits = exponent.base2()
+            ensureBinaryPowers(upTo: exponentBits.count)
+            
+            for (index, bit) in exponentBits.enumerated() where bit == .one {
+                result = (result * binaryPowers[index]) % modulo.value
+            }
+
+            return result
+        }
+        
+        // An array where the `i`-th entry is `base^(2^i) (mod modulo)`
+        private var binaryPowers: [Value] = []
+        
+        private func appendNextBinaryPower() {
+            let next: Value
+            
+            if let last = binaryPowers.last {
+                next = (last * last) % modulo.value
+            } else {
+                next = base % modulo.value
+            }
+            
+            binaryPowers.append(next)
+        }
+        
+        private func ensureBinaryPowers(upTo count: Int) {
+            while binaryPowers.count < count {
+                appendNextBinaryPower()
+            }
+        }
     }
+}
 
+public extension UnsignedInteger {
     public func power(_ exponent: Self, modulo: Math.Positive<Self>) -> Self {
-        guard modulo.value != 1 else { return 0 }
-
-        let exponentBits = exponent.base2()
-        let powers = binaryPowers(upTo: UInt(exponentBits.count), modulo: modulo)
-        var result = Self(1)
-
-        for (index, bit) in exponentBits.enumerated() where bit == .one {
-            result = (result * powers[index]) % modulo.value
-        }
-
-        return result
+        let oracle = Math.PowerOracle<Self>(base: self, modulo: modulo)
+        return oracle.power(exponent: exponent)
     }
 }

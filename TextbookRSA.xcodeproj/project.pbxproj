@@ -87,6 +87,7 @@
 		7C761B2720815D5700C427D3 /* Codability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Codability.swift; sourceTree = "<group>"; };
 		7C761B2A20817B6900C427D3 /* CodabilityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodabilityTests.swift; sourceTree = "<group>"; };
 		7CD56D252081F8E5008469C4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		7CD56D272081F90D008469C4 /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +112,7 @@
 		7C30B0AE207B4DA200482BEC = {
 			isa = PBXGroup;
 			children = (
+				7CD56D272081F90D008469C4 /* TODO.md */,
 				7CD56D252081F8E5008469C4 /* README.md */,
 				7C30B0BA207B4DA200482BEC /* TextbookRSA */,
 				7C30B0C5207B4DA200482BEC /* TextbookRSATests */,

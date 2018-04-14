@@ -161,10 +161,76 @@ class CodabilityTests: XCTestCase {
     }
     
     func testDecodingEncryptedData() {
-        // TODO
+        let validJsonString = """
+            {
+                "blocks": [
+                    1,
+                    2,
+                    3
+                ],
+                "exponent": 7
+            }
+        """
+        
+        let validJsonData = validJsonString.data(using: .utf8)!
+        let valid = try? JSONDecoder().decode(Encrypter.EncryptedData.self, from: validJsonData)
+        XCTAssertNotNil(valid)
+        if let valid = valid {
+            XCTAssertEqual(valid.blocks, [1, 2, 3])
+            XCTAssertEqual(valid.usedEncryptionExponent, 7)
+        }
+        
+        let validJsonStringEmptyBlocks = """
+            {
+                "blocks": [
+                ],
+                "exponent": 7
+            }
+        """
+        
+        let validJsonDataEmptyBlocks = validJsonStringEmptyBlocks.data(using: .utf8)!
+        let validEmptyBlocks = try? JSONDecoder().decode(Encrypter.EncryptedData.self, from: validJsonDataEmptyBlocks)
+        XCTAssertNotNil(validEmptyBlocks)
+        if let validEmptyBlocks = validEmptyBlocks {
+            XCTAssertEqual(validEmptyBlocks.blocks, [])
+            XCTAssertEqual(validEmptyBlocks.usedEncryptionExponent, 7)
+        }
+        
+        let jsonStringNoBlocks = """
+            {
+                "exponent": 7
+            }
+        """
+        
+        let jsonDataNoBlocks = jsonStringNoBlocks.data(using: .utf8)!
+        XCTAssertThrowsError(try JSONDecoder().decode(Encrypter.EncryptedData.self, from: jsonDataNoBlocks))
+        
+        let jsonStringNoExponent = """
+            {
+                "blocks": [
+                    1,
+                    2,
+                    3
+                ]
+            }
+        """
+        
+        let jsonDataNoExponent = jsonStringNoExponent.data(using: .utf8)!
+        XCTAssertThrowsError(try JSONDecoder().decode(Encrypter.EncryptedData.self, from: jsonDataNoExponent))
     }
     
     func testEncodingEncryptedData() {
-        // TODO
+        let encryptedData = Encrypter.EncryptedData(blocks: [1, 2, 3], usedEncryptionExponent: 7)
+        let encoded = try? JSONEncoder().encode(encryptedData)
+        XCTAssertNotNil(encoded)
+        
+        if let encoded = encoded {
+            let decoded = try? JSONDecoder().decode(Encrypter.EncryptedData.self, from: encoded)
+            XCTAssertNotNil(decoded)
+            if let decoded = decoded {
+                XCTAssertEqual(decoded.blocks, encryptedData.blocks)
+                XCTAssertEqual(decoded.usedEncryptionExponent, encryptedData.usedEncryptionExponent)
+            }
+        }
     }
 }

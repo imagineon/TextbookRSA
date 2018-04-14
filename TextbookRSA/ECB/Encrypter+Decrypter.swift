@@ -15,7 +15,7 @@ extension Encrypter: EncrypterProtocol {
     public typealias ECB = TextbookRSA.ECB
     
     public static func encrypt(_ data: Data, parameters: RSA.TransformationParameters) -> Encrypter.EncryptedData {
-        let ecb = ECB(blockSize: try! Math.Positive(parameters.modulo.usedBitWidth().value - 1))
+        let ecb = ECB(blockSize: parameters.modulo.usedBitWidth().predecessor)
         return encrypt(data, parameters: parameters, ecb: ecb)
     }
 }
@@ -27,7 +27,7 @@ public struct Decrypter: DecrypterProtocol {
     public let keys: RSA.Keys
 
     public func decrypt(_ encryptedData: Decrypter.EncryptedData) -> Data? {
-        let ecb = ECB(blockSize: try! Math.Positive(keys.public.usedBitWidth().value - 1))
+        let ecb = ECB(blockSize: keys.public.usedBitWidth().predecessor)
         return decrypt(encryptedData, ecb: ecb)
     }
 }
@@ -43,9 +43,11 @@ fileprivate extension EncrypterProtocol {
 
 fileprivate extension DecrypterProtocol {
     func decrypt(_ encryptedData: EncryptedData, ecb: ECB) -> Data? {
-        guard let decryptionParameters = keys.generateDecryptionParameters(forEncryptionExponent: encryptedData.usedEncryptionExponent) else { return nil }
-        let decryptedBlocks = encryptedData.blocks.map { RSA.transform($0, with: decryptionParameters) }
+        guard let decryptionParameters = keys.generateDecryptionParameters(forEncryptionExponent: encryptedData.usedEncryptionExponent) else {
+            return nil
+        }
         
+        let decryptedBlocks = encryptedData.blocks.map { RSA.transform($0, with: decryptionParameters) }
         return ecb.reconstruct(decryptedBlocks)
     }
 }

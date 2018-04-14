@@ -9,23 +9,6 @@
 import Foundation
 
 extension Math {
-    /// A wrapper around an integer value which guarantees the value is a prime number.
-    public struct Prime<Value: UnsignedInteger> {
-        let value: Value
-        
-        init(_ value: Value) throws {
-            guard isPrime(value) else {
-                throw Error.math(.primeFromNonPrimeValue)
-            }
-            
-            self.value = value
-        }
-        
-        static func *(left: Prime, right: Prime) -> GreaterThanOne<Value> {
-            return try! GreaterThanOne(left.value * right.value)
-        }
-    }
-    
     /**
      Base implementation of primality check. Can be overloaded for custom integer types
      (for example with variable bit width, for real-world encryption).

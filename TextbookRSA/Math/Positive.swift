@@ -22,7 +22,6 @@ extension Math {
         }
         
         static func *(left: Positive, right: Positive) -> Positive<Value> {
-            // Force try: We know that both values are positive numbers, so their product is also positive.
             return try! Positive(left.value * right.value)
         }
     }
@@ -41,6 +40,14 @@ extension Math {
         
         var positive: Positive<Value> {
             return try! Positive(value)
+        }
+        
+        var predecessor: Positive<Value> {
+            return try! Positive(value - 1)
+        }
+        
+        static func *(left: GreaterThanOne, right: GreaterThanOne) -> GreaterThanOne<Value> {
+            return try! GreaterThanOne(left.value * right.value)
         }
     }
 }

@@ -8,57 +8,39 @@
 
 import Foundation
 
-fileprivate extension Math {
-    static func eulerTotient<Value>(_ prime: Math.Prime<Value>) -> Math.Positive<Value> {
-        return try! Math.Positive(prime.value - 1)
-    }
-}
-
 fileprivate extension RSAKeysProtocol {
     var eulerTotient: RSA.Positive {
-        return Math.eulerTotient(self.private.p) * Math.eulerTotient(self.private.q)
-    }
-}
-
-fileprivate extension Math.Prime where Value == UInt {
-    static func randomInRange(min: UInt, count: Math.Positive<UInt32>) -> Math.Prime<UInt> {
-        while true {
-            let value = UInt.randomInRange(min: min, count: count)
-            
-            if let prime = try? Math.Prime(value) {
-                return prime
-            }
-        }
+        return self.private.p.predecessor * self.private.q.predecessor
     }
 }
 
 public struct RSAKeys: RSAKeysProtocol {
     public typealias RSA = TextbookRSA.RSA
     
-    public let `private`: (p: RSA.Prime, q: RSA.Prime)
+    public let `private`: (p: RSA.GreaterThanOne, q: RSA.GreaterThanOne)
     
     public var `public`: RSA.GreaterThanOne {
         return self.private.p * self.private.q
     }
     
     public init() {
-        var privateP: RSA.Prime
-        var privateQ: RSA.Prime
+        var privateP: RSA.GreaterThanOne
+        var privateQ: RSA.GreaterThanOne
         
         repeat {
             let minP = UInt(2)
             let maxP = RSAKeys.smallestPrimeFactorUpperBound
-            privateP = RSA.Prime.randomInRange(min: minP, count: try! Math.Positive(UInt32(maxP - minP)))
+            privateP = UInt.randomPrimeInRange(min: minP, count: try! Math.Positive(UInt32(maxP - minP)))
             
             let minQ = privateP.value + 1
             let maxQ = RSAKeys.publicKeyUpperBound / privateP.value
-            privateQ = RSA.Prime.randomInRange(min: minQ, count: try! Math.Positive(UInt32(maxQ - minQ)))
+            privateQ = UInt.randomPrimeInRange(min: minQ, count: try! Math.Positive(UInt32(maxQ - minQ)))
         } while !RSAKeys.areValidPrivateKeys(privateP: privateP, privateQ: privateQ)
 
         self.private = (p: privateP, q: privateQ)
     }
     
-    public init(privateP: RSA.Prime, privateQ: RSA.Prime) throws {
+    public init(privateP: RSA.GreaterThanOne, privateQ: RSA.GreaterThanOne) throws {
         guard RSAKeys.areValidPrivateKeys(privateP: privateP, privateQ: privateQ) else {
             throw Error.rsa(.invalidPrivateKeys)
         }
@@ -103,7 +85,7 @@ public struct RSAKeys: RSAKeysProtocol {
         return tooMuch - 1
     }()
     
-    private static func areValidPrivateKeys(privateP: RSA.Prime, privateQ: RSA.Prime) -> Bool {
+    private static func areValidPrivateKeys(privateP: RSA.GreaterThanOne, privateQ: RSA.GreaterThanOne) -> Bool {
         // First check: The primes must be distinct.
         guard privateP.value != privateQ.value else { return false }
         

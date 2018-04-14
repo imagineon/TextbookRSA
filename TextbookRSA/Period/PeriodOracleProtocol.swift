@@ -11,5 +11,5 @@ import Foundation
 public protocol PeriodOracleProtocol {
     associatedtype UInteger: UnsignedInteger
 
-    static func period(of base: UInteger, modulo: Math.Positive<UInteger>) -> UInteger
+    static func period(of base: UInteger, modulo: Math.Positive<UInteger>) -> UInteger?
 }

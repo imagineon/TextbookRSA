@@ -62,4 +62,12 @@ class CodabilityTests: XCTestCase {
     func testEncodingKeys() {
         // TODO
     }
+    
+    func testDecodingEncryptedData() {
+        // TODO
+    }
+    
+    func testEncodingEncryptedData() {
+        // TODO
+    }
 }

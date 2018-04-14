@@ -49,3 +49,10 @@ extension RSAKeysProtocol {
         try self.init(privateP: privateP, privateQ: privateQ)
     }
 }
+
+extension EncryptedData {
+    enum CodingKeys: String, CodingKey {
+        case blocks
+        case usedEncryptionExponent = "exponent"
+    }
+}

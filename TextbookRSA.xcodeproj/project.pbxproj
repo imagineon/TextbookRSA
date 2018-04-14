@@ -40,6 +40,7 @@
 		7C761B2B20817B6900C427D3 /* CodabilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C761B2A20817B6900C427D3 /* CodabilityTests.swift */; };
 		7CD56D242081F836008469C4 /* PeriodOracleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD56D232081F836008469C4 /* PeriodOracleProtocol.swift */; };
 		7CD56D262081F8E5008469C4 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7CD56D252081F8E5008469C4 /* README.md */; };
+		7CD56D29208210E3008469C4 /* PeriodOracle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD56D28208210E3008469C4 /* PeriodOracle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,7 @@
 		7CD56D232081F836008469C4 /* PeriodOracleProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodOracleProtocol.swift; sourceTree = "<group>"; };
 		7CD56D252081F8E5008469C4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		7CD56D272081F90D008469C4 /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
+		7CD56D28208210E3008469C4 /* PeriodOracle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodOracle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,6 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				7CD56D232081F836008469C4 /* PeriodOracleProtocol.swift */,
+				7CD56D28208210E3008469C4 /* PeriodOracle.swift */,
 			);
 			path = Period;
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 				7C5933C4207B7911008801DE /* Positive.swift in Sources */,
 				7C48B16F20809C2300F0C05D /* EncrypterProtocol+DecrypterProtocol.swift in Sources */,
 				7C48B163207F942900F0C05D /* GCD.swift in Sources */,
+				7CD56D29208210E3008469C4 /* PeriodOracle.swift in Sources */,
 				7C30B0DA207B548200482BEC /* Prime.swift in Sources */,
 				7C30B0DE207B5E2900482BEC /* Math.swift in Sources */,
 				7C30B0E5207B726800482BEC /* RSAKeys.swift in Sources */,

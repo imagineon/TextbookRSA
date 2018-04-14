@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct RSATransformationParameters<RSA: RSAProtocol> {
+public struct RSATransformationParameters<RSA: RSAProtocol>: Codable {
     let modulo: RSA.GreaterThanOne
     let exponent: RSA.UInteger
 }
@@ -34,7 +34,7 @@ public protocol RSAKeysProtocol {
 }
 
 public protocol RSAProtocol {
-    associatedtype UInteger: UnsignedInteger
+    associatedtype UInteger: UnsignedInteger, Codable
     typealias Positive = Math.Positive<UInteger>
     typealias GreaterThanOne = Math.GreaterThanOne<UInteger>
     

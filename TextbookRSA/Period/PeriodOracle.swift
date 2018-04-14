@@ -17,10 +17,11 @@ extension PeriodOracle: PeriodOracleProtocol {
         guard modulo.value != 1 && base != 1 else { return 1 }
         guard base != 0 else { return nil }
         
+        let powerOracle = Math.PowerOracle<UInteger>(base: base, modulo: modulo)
         var foundPowers = Set<UInteger>()
         
         for exponent in 1 ..< modulo.value {
-            let power = base.power(exponent, modulo: modulo)
+            let power = powerOracle.power(exponent: exponent)
             
             if power == 1 {
                 return exponent

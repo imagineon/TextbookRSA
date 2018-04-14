@@ -8,23 +8,23 @@
 
 import Foundation
 
-public struct RSATransformationParameters<RSA: RSAProtocol> {
+public struct RSATransformationParameters<RSA: RSAProtocol>: Codable {
     let modulo: RSA.GreaterThanOne
     let exponent: RSA.UInteger
 }
 
-public protocol RSAKeysProtocol {
+public protocol RSAKeysProtocol: Codable {
     associatedtype RSA: RSAProtocol
     
     /// The two (secret) prime factors of the public key.
-    var `private`: (p: RSA.Prime, q: RSA.Prime) { get }
+    var `private`: (p: RSA.GreaterThanOne, q: RSA.GreaterThanOne) { get }
     var `public`: RSA.GreaterThanOne { get }
     
     /// Generate key-pair by choosing prime factors randomly.
     init()
     
     /// Initialize key-pair for given prime factors.
-    init(privateP: RSA.Prime, privateQ: RSA.Prime) throws
+    init(privateP: RSA.GreaterThanOne, privateQ: RSA.GreaterThanOne) throws
     
     /// Generate parameters for encryption by randomly choosing a suitable exponent.
     func generateEncryptionParameters() -> RSA.TransformationParameters
@@ -34,8 +34,7 @@ public protocol RSAKeysProtocol {
 }
 
 public protocol RSAProtocol {
-    associatedtype UInteger: UnsignedInteger
-    typealias Prime = Math.Prime<UInteger>
+    associatedtype UInteger: UnsignedInteger, Codable
     typealias Positive = Math.Positive<UInteger>
     typealias GreaterThanOne = Math.GreaterThanOne<UInteger>
     

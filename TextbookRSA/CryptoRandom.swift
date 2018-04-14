@@ -18,4 +18,14 @@ extension UInt {
         
         return min + randomPositionInRange
     }
+    
+    static func randomPrimeInRange(min: UInt, count: Math.Positive<UInt32>) -> Math.GreaterThanOne<UInt> {
+        var value: UInt
+        
+        repeat {
+            value = UInt.randomInRange(min: min, count: count)
+        } while !Math.isPrime(value)
+        
+        return try! Math.GreaterThanOne(value)
+    }
 }

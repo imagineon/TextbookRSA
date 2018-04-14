@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct EncryptedData<ECB: ECBProtocol, RSA: RSAProtocol> {
+public struct EncryptedData<ECB: ECBProtocol, RSA: RSAProtocol>: Codable where ECB.Block == RSA.UInteger {
     let blocks: [ECB.Block]
     let usedEncryptionExponent: RSA.UInteger
 }

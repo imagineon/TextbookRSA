@@ -13,7 +13,6 @@ enum Error: Swift.Error {
     case rsa(RSAError)
     
     enum MathError {
-        case primeFromNonPrimeValue
         case positiveFromLessThanOrEqualToZero
         case greaterThanOneFromLessThanOrEqualToOne
     }

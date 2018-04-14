@@ -36,6 +36,8 @@
 		7C5933CE207CCA2A008801DE /* ModularExponentiationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5933CD207CCA2A008801DE /* ModularExponentiationTests.swift */; };
 		7C5933D0207CD153008801DE /* ModularInverse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5933CF207CD153008801DE /* ModularInverse.swift */; };
 		7C5933D2207CD163008801DE /* ModularInverseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5933D1207CD163008801DE /* ModularInverseTests.swift */; };
+		7C761B2820815D5700C427D3 /* Codability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C761B2720815D5700C427D3 /* Codability.swift */; };
+		7C761B2B20817B6900C427D3 /* CodabilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C761B2A20817B6900C427D3 /* CodabilityTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +83,8 @@
 		7C5933CD207CCA2A008801DE /* ModularExponentiationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModularExponentiationTests.swift; sourceTree = "<group>"; };
 		7C5933CF207CD153008801DE /* ModularInverse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModularInverse.swift; sourceTree = "<group>"; };
 		7C5933D1207CD163008801DE /* ModularInverseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModularInverseTests.swift; sourceTree = "<group>"; };
+		7C761B2720815D5700C427D3 /* Codability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Codability.swift; sourceTree = "<group>"; };
+		7C761B2A20817B6900C427D3 /* CodabilityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodabilityTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +131,7 @@
 				7C30B0D4207B4E4E00482BEC /* ECB */,
 				7C30B0D3207B4E4700482BEC /* RSA */,
 				7C30B0D2207B4E3900482BEC /* Math */,
+				7C761B2620815D1E00C427D3 /* Codability */,
 				7C30B0BB207B4DA200482BEC /* TextbookRSA.h */,
 				7C30B0BC207B4DA200482BEC /* Info.plist */,
 				7C30B0DB207B5CBB00482BEC /* Errors.swift */,
@@ -142,6 +147,7 @@
 				7C30B0DF207B61BC00482BEC /* ECB */,
 				7C30B0E0207B61C500482BEC /* RSA */,
 				7C30B0E1207B61CA00482BEC /* Math */,
+				7C761B2920817B4800C427D3 /* Codability */,
 				7C30B0C8207B4DA200482BEC /* Info.plist */,
 				7C48B166207FA09D00F0C05D /* Timing.swift */,
 			);
@@ -226,6 +232,22 @@
 				7C5933C9207CBCC3008801DE /* BitTests.swift */,
 			);
 			path = Bit;
+			sourceTree = "<group>";
+		};
+		7C761B2620815D1E00C427D3 /* Codability */ = {
+			isa = PBXGroup;
+			children = (
+				7C761B2720815D5700C427D3 /* Codability.swift */,
+			);
+			path = Codability;
+			sourceTree = "<group>";
+		};
+		7C761B2920817B4800C427D3 /* Codability */ = {
+			isa = PBXGroup;
+			children = (
+				7C761B2A20817B6900C427D3 /* CodabilityTests.swift */,
+			);
+			path = Codability;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -346,6 +368,7 @@
 				7C48B16B20809BDA00F0C05D /* ECB.swift in Sources */,
 				7C48B16D20809BF800F0C05D /* ECBProtocol.swift in Sources */,
 				7C30B0E7207B729000482BEC /* RSA.swift in Sources */,
+				7C761B2820815D5700C427D3 /* Codability.swift in Sources */,
 				7C5933C8207CA4C6008801DE /* Bit.swift in Sources */,
 				7C48B1712080A6D200F0C05D /* Encrypter+Decrypter.swift in Sources */,
 				7C5933C4207B7911008801DE /* Positive.swift in Sources */,
@@ -370,6 +393,7 @@
 				7C1E76A8208129170002A5F7 /* EncrypterAndDecrypterTests.swift in Sources */,
 				7C0905492080B3B300FFCF3E /* PositiveTests.swift in Sources */,
 				7C48B167207FA09D00F0C05D /* Timing.swift in Sources */,
+				7C761B2B20817B6900C427D3 /* CodabilityTests.swift in Sources */,
 				7C5933CE207CCA2A008801DE /* ModularExponentiationTests.swift in Sources */,
 				7C5933D2207CD163008801DE /* ModularInverseTests.swift in Sources */,
 				7C22B0F02081036200C53C82 /* ECBTests.swift in Sources */,

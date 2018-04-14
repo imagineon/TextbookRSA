@@ -14,7 +14,23 @@ extension PeriodOracle: PeriodOracleProtocol {
     public typealias UInteger = RSA.UInteger
     
     public static func period(of base: UInteger, modulo: Math.Positive<UInteger>) -> UInteger? {
-        guard modulo.value != 1 else { return 1 }
-        return (1 ..< modulo.value).first { base.power($0, modulo: modulo) == 1 }
+        guard modulo.value != 1 && base != 1 else { return 1 }
+        guard base != 0 else { return nil }
+        
+        var foundPowers = Set<UInteger>()
+        
+        for exponent in 1 ..< modulo.value {
+            let power = base.power(exponent, modulo: modulo)
+            
+            if power == 1 {
+                return exponent
+            } else if foundPowers.contains(power) {
+                return nil
+            } else {
+                foundPowers.insert(power)
+            }
+        }
+        
+        return nil
     }
 }

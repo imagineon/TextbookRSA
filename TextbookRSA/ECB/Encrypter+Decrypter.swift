@@ -28,7 +28,7 @@ public struct Decrypter: DecrypterProtocol {
 
     public func decrypt(_ encryptedData: Decrypter.EncryptedData) -> Data? {
         let ecb = ECB(blockSize: keys.public.usedBitWidth().predecessor)
-        return decrypt(encryptedData, ecb: ecb)
+        return decrypt(encryptedData, ecb: ecb, keys: keys)
     }
 }
 
@@ -42,7 +42,7 @@ fileprivate extension EncrypterProtocol {
 }
 
 fileprivate extension DecrypterProtocol {
-    func decrypt(_ encryptedData: EncryptedData, ecb: ECB) -> Data? {
+    func decrypt(_ encryptedData: EncryptedData, ecb: ECB, keys: RSA.Keys) -> Data? {
         guard let decryptionParameters = keys.generateDecryptionParameters(forEncryptionExponent: encryptedData.usedEncryptionExponent) else {
             return nil
         }

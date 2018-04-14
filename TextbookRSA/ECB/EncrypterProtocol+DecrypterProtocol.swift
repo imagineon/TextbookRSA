@@ -34,16 +34,11 @@ public protocol DecrypterProtocol {
     associatedtype ECB: ECBProtocol where ECB.Block == RSA.UInteger
     
     typealias EncryptedData = TextbookRSA.EncryptedData<ECB, RSA>
-    
-    var keys: RSA.Keys { get }
+
     func decrypt(_ encryptedData: EncryptedData) -> Data?
 }
 
 extension DecrypterProtocol {
-    func generateEncryptionParameters() -> RSA.TransformationParameters {
-        return keys.generateEncryptionParameters()
-    }
-    
     func decryptText(_ encryptedData: EncryptedData) -> String? {
         return decrypt(encryptedData).map { String(data: $0, encoding: .utf16) }.flatMap { $0 }
     }

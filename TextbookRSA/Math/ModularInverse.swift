@@ -15,9 +15,7 @@ public extension UnsignedInteger {
      - returns: A multiplicative modular inverse of this integer, if one exists, `nil` otherwise.
      */
     func inverse(modulo: Math.Positive<Self>) -> Self? {
-        guard modulo.value != 1 else {
-            return 0
-        }
+        guard modulo.value != 1 else { return 0 }
 
         var dividend = modulo.value
         var divisor = self % modulo.value

@@ -43,12 +43,12 @@ public struct PeriodDecrypter: DecrypterProtocol {
         return ecb.reconstruct(decryptedBlocks)
     }
     
-    private enum DecryptBlockResult {
+    internal enum DecryptBlockResult {
         case block(ECB.Block)
         case keys(RSA.Keys)
     }
     
-    private func decrypt(block: ECB.Block, usedEncryptionExponent: RSA.UInteger) -> DecryptBlockResult? {
+    internal func decrypt(block: ECB.Block, usedEncryptionExponent: RSA.UInteger) -> DecryptBlockResult? {
         guard block != 0 else {
             return .block(0)
         }
@@ -64,7 +64,7 @@ public struct PeriodDecrypter: DecrypterProtocol {
         }
     }
     
-    private func tryToExtractKeys(from block: ECB.Block) -> RSA.Keys? {
+    internal func tryToExtractKeys(from block: ECB.Block) -> RSA.Keys? {
         guard
             let gcd = Math.gcd(block, publicKey.value),
             let privateP = try? RSA.GreaterThanOne(gcd),
@@ -74,7 +74,7 @@ public struct PeriodDecrypter: DecrypterProtocol {
         return try? RSA.Keys(privateP: privateP, privateQ: privateQ)
     }
     
-    private func decrypt(block: ECB.Block, usedEncryptionExponent: RSA.UInteger, period: RSA.Positive) -> ECB.Block? {
+    internal func decrypt(block: ECB.Block, usedEncryptionExponent: RSA.UInteger, period: RSA.Positive) -> ECB.Block? {
         guard let decryptionExponent = usedEncryptionExponent.inverse(modulo: period) else { return nil }
         let decryptionParameters = RSA.TransformationParameters(modulo: publicKey, exponent: decryptionExponent)
         return RSA.transform(block, with: decryptionParameters)

@@ -13,8 +13,8 @@ public enum PeriodOracle {}
 extension PeriodOracle: PeriodOracleProtocol {
     public typealias UInteger = RSA.UInteger
     
-    public static func period(of base: UInteger, modulo: Math.Positive<UInteger>) -> UInteger? {
-        guard modulo.value != 1 && base != 1 else { return 1 }
+    public static func period(of base: UInteger, modulo: Math.Positive<UInteger>) -> Math.Positive<UInteger>? {
+        guard modulo.value != 1 && base != 1 else { return try! Math.Positive(1) }
         guard base != 0 else { return nil }
         
         let powerOracle = Math.PowerOracle<UInteger>(base: base, modulo: modulo)
@@ -24,7 +24,7 @@ extension PeriodOracle: PeriodOracleProtocol {
             let power = powerOracle.power(exponent: exponent)
             
             if power == 1 {
-                return exponent
+                return try! Math.Positive(exponent)
             } else if foundPowers.contains(power) {
                 return nil
             } else {

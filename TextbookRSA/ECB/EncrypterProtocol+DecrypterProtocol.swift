@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct EncryptedData<Block: Codable, UInteger: UnsignedInteger & Codable>: Codable {
+public struct ECBEncryptedData<Block: Codable, UInteger: UnsignedInteger & Codable>: Codable {
     public let blocks: [Block]
     public let encryptionExponent: UInteger
 }
@@ -16,7 +16,7 @@ public struct EncryptedData<Block: Codable, UInteger: UnsignedInteger & Codable>
 public protocol EncrypterProtocol {
     associatedtype RSA: RSAProtocol
     
-    typealias EncryptedData = TextbookRSA.EncryptedData<RSA.UInteger, RSA.UInteger>
+    typealias EncryptedData = ECBEncryptedData<RSA.UInteger, RSA.UInteger>
     
     static func encrypt(_ data: Data, parameters: RSA.TransformationParameters) -> EncryptedData
 }
@@ -31,7 +31,7 @@ public extension EncrypterProtocol {
 public protocol DecrypterProtocol {
     associatedtype RSA: RSAProtocol
     
-    typealias EncryptedData = TextbookRSA.EncryptedData<RSA.UInteger, RSA.UInteger>
+    typealias EncryptedData = ECBEncryptedData<RSA.UInteger, RSA.UInteger>
 
     func decrypt(_ encryptedData: EncryptedData) -> Data?
 }

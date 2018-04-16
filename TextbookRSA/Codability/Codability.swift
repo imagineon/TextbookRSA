@@ -52,7 +52,7 @@ extension RSAKeys {
     }
 }
 
-extension EncryptedData {
+extension ECBEncryptedData {
     enum CodingKeys: String, CodingKey {
         case blocks
         case encryptionExponent = "exponent"

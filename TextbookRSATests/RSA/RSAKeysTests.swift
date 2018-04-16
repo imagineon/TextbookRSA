@@ -17,6 +17,12 @@ class RSAKeysTests: XCTestCase {
         XCTAssertEqual(keys_5_7.eulerTotient.value, 4 * 6)
     }
     
+    func testAreValidPrivateKeys() {
+        let primes = RSAKeys().private
+        XCTAssertFalse(RSAKeys.areValidPrivateKeys(privateP: primes.p, privateQ: primes.p))
+        XCTAssertFalse(RSAKeys.areValidPrivateKeys(privateP: primes.q, privateQ: primes.q))
+    }
+    
     func testPublicKeyUpperBound() {
         /*
          Here, we want to make sure that the `UInt.power` operations do not overflow. For this, we require that

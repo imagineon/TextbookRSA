@@ -74,7 +74,9 @@ public struct PeriodDecrypter: DecrypterProtocol {
         return try? RSA.Keys(privateP: privateP, privateQ: privateQ)
     }
     
-    private func decrypt(block: ECB.Block, usedEncryptionExponent: RSA.UInteger, period: RSA.UInteger) -> ECB.Block? {
-        return nil // TODO
+    private func decrypt(block: ECB.Block, usedEncryptionExponent: RSA.UInteger, period: RSA.Positive) -> ECB.Block? {
+        guard let decryptionExponent = usedEncryptionExponent.inverse(modulo: period) else { return nil }
+        let decryptionParameters = RSA.TransformationParameters(modulo: publicKey, exponent: decryptionExponent)
+        return RSA.transform(block, with: decryptionParameters)
     }
 }

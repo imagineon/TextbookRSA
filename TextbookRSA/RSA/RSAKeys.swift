@@ -8,7 +8,7 @@
 
 import Foundation
 
-fileprivate extension RSAKeysProtocol {
+internal extension RSAKeysProtocol {
     var eulerTotient: RSA.Positive {
         return self.private.p.predecessor * self.private.q.predecessor
     }

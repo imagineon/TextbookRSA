@@ -10,6 +10,13 @@ import XCTest
 @testable import TextbookRSA
 
 class RSAKeysTests: XCTestCase {
+    func testEulerTotient() {
+        let keys_2_3 = try! RSAKeys(privateP: try! .init(2), privateQ: try! .init(3))
+        XCTAssertEqual(keys_2_3.eulerTotient.value, 1 * 2)
+        let keys_5_7 = try! RSAKeys(privateP: try! .init(5), privateQ: try! .init(7))
+        XCTAssertEqual(keys_5_7.eulerTotient.value, 4 * 6)
+    }
+    
     func testPublicKeyUpperBound() {
         /*
          Here, we want to make sure that the `UInt.power` operations do not overflow. For this, we require that

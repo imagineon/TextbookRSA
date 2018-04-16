@@ -38,6 +38,7 @@
 		7C5933D2207CD163008801DE /* ModularInverseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5933D1207CD163008801DE /* ModularInverseTests.swift */; };
 		7C761B2820815D5700C427D3 /* Codability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C761B2720815D5700C427D3 /* Codability.swift */; };
 		7C761B2B20817B6900C427D3 /* CodabilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C761B2A20817B6900C427D3 /* CodabilityTests.swift */; };
+		7CC4ED3F20849531002362D5 /* PeriodDecrypterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC4ED3E20849531002362D5 /* PeriodDecrypterTests.swift */; };
 		7CD56D242081F836008469C4 /* PeriodOracleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD56D232081F836008469C4 /* PeriodOracleProtocol.swift */; };
 		7CD56D262081F8E5008469C4 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7CD56D252081F8E5008469C4 /* README.md */; };
 		7CD56D29208210E3008469C4 /* PeriodOracle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD56D28208210E3008469C4 /* PeriodOracle.swift */; };
@@ -90,6 +91,7 @@
 		7C5933D1207CD163008801DE /* ModularInverseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModularInverseTests.swift; sourceTree = "<group>"; };
 		7C761B2720815D5700C427D3 /* Codability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Codability.swift; sourceTree = "<group>"; };
 		7C761B2A20817B6900C427D3 /* CodabilityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodabilityTests.swift; sourceTree = "<group>"; };
+		7CC4ED3E20849531002362D5 /* PeriodDecrypterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodDecrypterTests.swift; sourceTree = "<group>"; };
 		7CD56D232081F836008469C4 /* PeriodOracleProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodOracleProtocol.swift; sourceTree = "<group>"; };
 		7CD56D252081F8E5008469C4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		7CD56D272081F90D008469C4 /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 			isa = PBXGroup;
 			children = (
 				7CD56D2A208211DE008469C4 /* PeriodOracleTests.swift */,
+				7CC4ED3E20849531002362D5 /* PeriodDecrypterTests.swift */,
 			);
 			path = Period;
 			sourceTree = "<group>";
@@ -430,6 +433,7 @@
 				7CD56D2B208211DE008469C4 /* PeriodOracleTests.swift in Sources */,
 				7C1E76A8208129170002A5F7 /* EncrypterAndDecrypterTests.swift in Sources */,
 				7C0905492080B3B300FFCF3E /* PositiveTests.swift in Sources */,
+				7CC4ED3F20849531002362D5 /* PeriodDecrypterTests.swift in Sources */,
 				7C48B167207FA09D00F0C05D /* Timing.swift in Sources */,
 				7C761B2B20817B6900C427D3 /* CodabilityTests.swift in Sources */,
 				7C5933CE207CCA2A008801DE /* ModularExponentiationTests.swift in Sources */,

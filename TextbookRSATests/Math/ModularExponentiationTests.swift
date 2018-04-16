@@ -10,6 +10,35 @@ import XCTest
 @testable import TextbookRSA
 
 class ModularExponentiationTests: XCTestCase {
+    func testPowerOracle() {
+        typealias Oracle = Math.PowerOracle<UInt>
+
+        // Powers of 0
+        let oracle_0_1 = Oracle(base: 0, modulo: try! .init(1))
+        XCTAssertEqual(oracle_0_1.power(exponent: 0), 0)
+        let oracle_0_13 = Oracle(base: 0, modulo: try! .init(13))
+        XCTAssertEqual(oracle_0_13.power(exponent: 0), 1) // This test documents our convention that `0^0 = 1`.
+        XCTAssertEqual(oracle_0_13.power(exponent: 1), 0)
+        XCTAssertEqual(oracle_0_13.power(exponent: 2), 0)
+        // Powers of 1
+        let oracle_1_13 = Oracle(base: 1, modulo: try! .init(13))
+        XCTAssertEqual(oracle_1_13.power(exponent: 0), 1)
+        XCTAssertEqual(oracle_1_13.power(exponent: 1), 1)
+        XCTAssertEqual(oracle_1_13.power(exponent: 2), 1)
+        // Powers of 6
+        let oracle_6_1 = Oracle(base: 6, modulo: try! .init(1))
+        XCTAssertEqual(oracle_6_1.power(exponent: 0), 0)
+        let oracle_6_13 = Oracle(base: 6, modulo: try! .init(13))
+        XCTAssertEqual(oracle_6_13.power(exponent: 0), 1)
+        XCTAssertEqual(oracle_6_13.power(exponent: 1), 6)
+        XCTAssertEqual(oracle_6_13.power(exponent: 2), 36 % 13)
+        XCTAssertEqual(oracle_6_13.power(exponent: 3), 216 % 13)
+        XCTAssertEqual(oracle_6_13.power(exponent: 4), 1296 % 13)
+        XCTAssertEqual(oracle_6_13.power(exponent: 5), 7776 % 13)
+        let oracle_cong_6_13 = Oracle(base: 6 + (2 * 13), modulo: try! .init(13))
+        XCTAssertEqual(oracle_cong_6_13.power(exponent: 5), 7776 % 13)
+    }
+    
     func testPower() {
         // Powers of 0
         XCTAssertEqual(UInt(0).power(0, modulo: try! Math.Positive<UInt>(1)), 0)

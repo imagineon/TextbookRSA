@@ -8,7 +8,7 @@
 
 import Foundation
 
-fileprivate extension RSAKeysProtocol {
+internal extension RSAKeysProtocol {
     var eulerTotient: RSA.Positive {
         return self.private.p.predecessor * self.private.q.predecessor
     }
@@ -85,7 +85,7 @@ public struct RSAKeys: RSAKeysProtocol {
         return tooMuch - 1
     }()
     
-    private static func areValidPrivateKeys(privateP: RSA.GreaterThanOne, privateQ: RSA.GreaterThanOne) -> Bool {
+    internal static func areValidPrivateKeys(privateP: RSA.GreaterThanOne, privateQ: RSA.GreaterThanOne) -> Bool {
         // First check: The primes must be distinct.
         guard privateP.value != privateQ.value else { return false }
         

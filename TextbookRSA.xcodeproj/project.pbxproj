@@ -38,7 +38,12 @@
 		7C5933D2207CD163008801DE /* ModularInverseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5933D1207CD163008801DE /* ModularInverseTests.swift */; };
 		7C761B2820815D5700C427D3 /* Codability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C761B2720815D5700C427D3 /* Codability.swift */; };
 		7C761B2B20817B6900C427D3 /* CodabilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C761B2A20817B6900C427D3 /* CodabilityTests.swift */; };
+		7CC4ED3F20849531002362D5 /* PeriodDecrypterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC4ED3E20849531002362D5 /* PeriodDecrypterTests.swift */; };
+		7CD56D242081F836008469C4 /* PeriodOracleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD56D232081F836008469C4 /* PeriodOracleProtocol.swift */; };
 		7CD56D262081F8E5008469C4 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7CD56D252081F8E5008469C4 /* README.md */; };
+		7CD56D29208210E3008469C4 /* PeriodOracle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD56D28208210E3008469C4 /* PeriodOracle.swift */; };
+		7CD56D2B208211DE008469C4 /* PeriodOracleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD56D2A208211DE008469C4 /* PeriodOracleTests.swift */; };
+		7CD56D2D20822E94008469C4 /* PeriodDecrypter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD56D2C20822E94008469C4 /* PeriodDecrypter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,8 +91,13 @@
 		7C5933D1207CD163008801DE /* ModularInverseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModularInverseTests.swift; sourceTree = "<group>"; };
 		7C761B2720815D5700C427D3 /* Codability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Codability.swift; sourceTree = "<group>"; };
 		7C761B2A20817B6900C427D3 /* CodabilityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodabilityTests.swift; sourceTree = "<group>"; };
+		7CC4ED3E20849531002362D5 /* PeriodDecrypterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodDecrypterTests.swift; sourceTree = "<group>"; };
+		7CD56D232081F836008469C4 /* PeriodOracleProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodOracleProtocol.swift; sourceTree = "<group>"; };
 		7CD56D252081F8E5008469C4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		7CD56D272081F90D008469C4 /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
+		7CD56D28208210E3008469C4 /* PeriodOracle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodOracle.swift; sourceTree = "<group>"; };
+		7CD56D2A208211DE008469C4 /* PeriodOracleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodOracleTests.swift; sourceTree = "<group>"; };
+		7CD56D2C20822E94008469C4 /* PeriodDecrypter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodDecrypter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +145,7 @@
 				7C5933C5207CA4B2008801DE /* Bit */,
 				7C30B0D4207B4E4E00482BEC /* ECB */,
 				7C30B0D3207B4E4700482BEC /* RSA */,
+				7CD56D212081F7FD008469C4 /* Period */,
 				7C30B0D2207B4E3900482BEC /* Math */,
 				7C761B2620815D1E00C427D3 /* Codability */,
 				7C30B0BB207B4DA200482BEC /* TextbookRSA.h */,
@@ -151,6 +162,7 @@
 				7C5933C6207CA4BB008801DE /* Bit */,
 				7C30B0DF207B61BC00482BEC /* ECB */,
 				7C30B0E0207B61C500482BEC /* RSA */,
+				7CD56D222081F810008469C4 /* Period */,
 				7C30B0E1207B61CA00482BEC /* Math */,
 				7C761B2920817B4800C427D3 /* Codability */,
 				7C30B0C8207B4DA200482BEC /* Info.plist */,
@@ -253,6 +265,25 @@
 				7C761B2A20817B6900C427D3 /* CodabilityTests.swift */,
 			);
 			path = Codability;
+			sourceTree = "<group>";
+		};
+		7CD56D212081F7FD008469C4 /* Period */ = {
+			isa = PBXGroup;
+			children = (
+				7CD56D232081F836008469C4 /* PeriodOracleProtocol.swift */,
+				7CD56D28208210E3008469C4 /* PeriodOracle.swift */,
+				7CD56D2C20822E94008469C4 /* PeriodDecrypter.swift */,
+			);
+			path = Period;
+			sourceTree = "<group>";
+		};
+		7CD56D222081F810008469C4 /* Period */ = {
+			isa = PBXGroup;
+			children = (
+				7CD56D2A208211DE008469C4 /* PeriodOracleTests.swift */,
+				7CC4ED3E20849531002362D5 /* PeriodDecrypterTests.swift */,
+			);
+			path = Period;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -372,6 +403,7 @@
 				7C5933CC207CC60E008801DE /* ModularExponentiation.swift in Sources */,
 				7C30B0DC207B5CBB00482BEC /* Errors.swift in Sources */,
 				7C48B16B20809BDA00F0C05D /* ECB.swift in Sources */,
+				7CD56D242081F836008469C4 /* PeriodOracleProtocol.swift in Sources */,
 				7C48B16D20809BF800F0C05D /* ECBProtocol.swift in Sources */,
 				7C30B0E7207B729000482BEC /* RSA.swift in Sources */,
 				7C761B2820815D5700C427D3 /* Codability.swift in Sources */,
@@ -380,9 +412,11 @@
 				7C5933C4207B7911008801DE /* Positive.swift in Sources */,
 				7C48B16F20809C2300F0C05D /* EncrypterProtocol+DecrypterProtocol.swift in Sources */,
 				7C48B163207F942900F0C05D /* GCD.swift in Sources */,
+				7CD56D29208210E3008469C4 /* PeriodOracle.swift in Sources */,
 				7C30B0DA207B548200482BEC /* Prime.swift in Sources */,
 				7C30B0DE207B5E2900482BEC /* Math.swift in Sources */,
 				7C30B0E5207B726800482BEC /* RSAKeys.swift in Sources */,
+				7CD56D2D20822E94008469C4 /* PeriodDecrypter.swift in Sources */,
 				7C5933D0207CD153008801DE /* ModularInverse.swift in Sources */,
 				7C48B15F207E282300F0C05D /* CryptoRandom.swift in Sources */,
 			);
@@ -396,8 +430,10 @@
 				7C5933CA207CBCC3008801DE /* BitTests.swift in Sources */,
 				7C48B1692080953400F0C05D /* RSATests.swift in Sources */,
 				7C48B165207F943F00F0C05D /* GCDTests.swift in Sources */,
+				7CD56D2B208211DE008469C4 /* PeriodOracleTests.swift in Sources */,
 				7C1E76A8208129170002A5F7 /* EncrypterAndDecrypterTests.swift in Sources */,
 				7C0905492080B3B300FFCF3E /* PositiveTests.swift in Sources */,
+				7CC4ED3F20849531002362D5 /* PeriodDecrypterTests.swift in Sources */,
 				7C48B167207FA09D00F0C05D /* Timing.swift in Sources */,
 				7C761B2B20817B6900C427D3 /* CodabilityTests.swift in Sources */,
 				7C5933CE207CCA2A008801DE /* ModularExponentiationTests.swift in Sources */,

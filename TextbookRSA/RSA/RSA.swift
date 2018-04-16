@@ -15,7 +15,7 @@ extension RSA: RSAProtocol {
     public typealias UInteger = UInt
     public typealias Keys = RSAKeys
     
-    public static func transform(_ block: UInteger, with parameters: TransformationParameters) -> UInteger {
+    static func transform(_ block: UInteger, with parameters: TransformationParameters) -> UInteger {
         return block.power(parameters.exponent, modulo: parameters.modulo.positive)
     }
 }

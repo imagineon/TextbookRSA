@@ -10,12 +10,12 @@ import Foundation
 
 extension Math {
     /// Wrapper around an integral value which guarantees the value is greater than 0.
-    public struct Positive<Value: BinaryInteger> {
+    struct Positive<Value: BinaryInteger> {
         let value: Value
         
         init(_ value: Value) throws {
             guard value > 0 else {
-                throw Error.math(.positiveFromLessThanOrEqualToZero)
+                throw Error.invalidArguments
             }
             
             self.value = value
@@ -28,11 +28,11 @@ extension Math {
     
     /// Wrapper around an integral value which guarantees the value is greater than 1.
     public struct GreaterThanOne<Value: BinaryInteger> {
-        let value: Value
+        public let value: Value
         
         init(_ value: Value) throws {
             guard value > 1 else {
-                throw Error.math(.greaterThanOneFromLessThanOrEqualToOne)
+                throw Error.invalidArguments
             }
             
             self.value = value

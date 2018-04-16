@@ -19,7 +19,7 @@ extension Math {
      you should create and keep one such `PowerOracle` and use its `power` function, instead
      of calling `b.power(e, modulo: m)` each time.
      */
-    public class PowerOracle<Value: UnsignedInteger> {
+    class PowerOracle<Value: UnsignedInteger> {
         let base: Value
         let modulo: Math.Positive<Value>
         
@@ -66,8 +66,8 @@ extension Math {
     }
 }
 
-public extension UnsignedInteger {
-    public func power(_ exponent: Self, modulo: Math.Positive<Self>) -> Self {
+extension UnsignedInteger {
+    func power(_ exponent: Self, modulo: Math.Positive<Self>) -> Self {
         let oracle = Math.PowerOracle<Self>(base: self, modulo: modulo)
         return oracle.power(exponent: exponent)
     }

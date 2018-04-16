@@ -39,7 +39,9 @@ extension RSAKeysProtocol {
         try container.encode(self.private.p.value, forKey: .privateP)
         try container.encode(self.private.q.value, forKey: .privateQ)
     }
-    
+}
+
+extension RSAKeys {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: RSAKeysProtocolCodingKeys.self)
         let pValue = try container.decode(RSA.UInteger.self, forKey: .privateP)

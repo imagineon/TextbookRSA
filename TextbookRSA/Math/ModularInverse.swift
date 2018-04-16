@@ -8,7 +8,7 @@
 
 import Foundation
 
-public extension UnsignedInteger {
+extension UnsignedInteger {
     /**
      Get the multiplicative inverse of this integer modulo `modulo`.
      

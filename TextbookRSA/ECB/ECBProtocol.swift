@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol ECBProtocol {
+protocol ECBProtocol {
     associatedtype Block
     
     func chop(_ data: Data) -> [Block]

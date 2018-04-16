@@ -8,12 +8,12 @@
 
 import Foundation
 
-public struct ECB: ECBProtocol {
-    public typealias Block = UInt
+struct ECB: ECBProtocol {
+    typealias Block = UInt
     
     let blockSize: Math.Positive<Int>
     
-    public func chop(_ data: Data) -> [Block] {
+    func chop(_ data: Data) -> [Block] {
         let bits = data.map { $0.base2() }.map { $0 + Array<Bit>(repeating: .zero, count: 8 - $0.count) }.joined()
 
         // We pad the array of bits on the back with a single `Bit.one`, followed by the smallest
@@ -30,7 +30,7 @@ public struct ECB: ECBProtocol {
         return slices.map { UInt(fromBase2: $0) }
     }
     
-    public func reconstruct(_ blocks: [Block]) -> Data? {
+    func reconstruct(_ blocks: [Block]) -> Data? {
         // If any of the blocks uses more than `blockSize` bits in its base-2 representation,
         // these blocks were not created using `ECB.chop` with the same `blockSize`.
         let maxBlock = (1 << blockSize.value)

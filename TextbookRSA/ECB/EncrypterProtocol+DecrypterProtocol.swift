@@ -8,21 +8,20 @@
 
 import Foundation
 
-public struct EncryptedData<ECB: ECBProtocol, RSA: RSAProtocol>: Codable where ECB.Block == RSA.UInteger {
-    let blocks: [ECB.Block]
-    let usedEncryptionExponent: RSA.UInteger
+public struct EncryptedData<Block: Codable, UInteger: UnsignedInteger & Codable>: Codable {
+    public let blocks: [Block]
+    public let usedEncryptionExponent: UInteger
 }
 
 public protocol EncrypterProtocol {
     associatedtype RSA: RSAProtocol
-    associatedtype ECB: ECBProtocol where ECB.Block == RSA.UInteger
     
-    typealias EncryptedData = TextbookRSA.EncryptedData<ECB, RSA>
+    typealias EncryptedData = TextbookRSA.EncryptedData<RSA.UInteger, RSA.UInteger>
     
     static func encrypt(_ data: Data, parameters: RSA.TransformationParameters) -> EncryptedData
 }
 
-extension EncrypterProtocol {
+public extension EncrypterProtocol {
     static func encrypt(_ text: String, parameters: RSA.TransformationParameters) -> EncryptedData {
         let data = text.data(using: .utf16)!
         return encrypt(data, parameters: parameters)
@@ -31,14 +30,13 @@ extension EncrypterProtocol {
 
 public protocol DecrypterProtocol {
     associatedtype RSA: RSAProtocol
-    associatedtype ECB: ECBProtocol where ECB.Block == RSA.UInteger
     
-    typealias EncryptedData = TextbookRSA.EncryptedData<ECB, RSA>
+    typealias EncryptedData = TextbookRSA.EncryptedData<RSA.UInteger, RSA.UInteger>
 
     func decrypt(_ encryptedData: EncryptedData) -> Data?
 }
 
-extension DecrypterProtocol {
+public extension DecrypterProtocol {
     func decryptText(_ encryptedData: EncryptedData) -> String? {
         return decrypt(encryptedData).map { String(data: $0, encoding: .utf16) }.flatMap { $0 }
     }

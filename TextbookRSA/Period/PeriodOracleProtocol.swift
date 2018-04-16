@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol PeriodOracleProtocol {
+protocol PeriodOracleProtocol {
     associatedtype UInteger: UnsignedInteger
 
     static func period(of base: UInteger, modulo: Math.Positive<UInteger>) -> Math.Positive<UInteger>?

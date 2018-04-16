@@ -8,7 +8,7 @@
 
 import Foundation
 
-internal extension RSAKeysProtocol {
+extension RSAKeysProtocol {
     var eulerTotient: RSA.Positive {
         return self.private.p.predecessor * self.private.q.predecessor
     }
@@ -40,9 +40,9 @@ public struct RSAKeys: RSAKeysProtocol {
         self.private = (p: privateP, q: privateQ)
     }
     
-    public init(privateP: RSA.GreaterThanOne, privateQ: RSA.GreaterThanOne) throws {
+    init(privateP: RSA.GreaterThanOne, privateQ: RSA.GreaterThanOne) throws {
         guard RSAKeys.areValidPrivateKeys(privateP: privateP, privateQ: privateQ) else {
-            throw Error.rsa(.invalidPrivateKeys)
+            throw Error.invalidArguments
         }
         
         self.private = (p: privateP, q: privateQ)
@@ -63,7 +63,7 @@ public struct RSAKeys: RSAKeysProtocol {
         return RSA.TransformationParameters(modulo: self.public, exponent: exponent)
     }
     
-    public func generateDecryptionParameters(forEncryptionExponent encryptionExponent: RSA.UInteger) -> RSA.TransformationParameters? {
+    func generateDecryptionParameters(forEncryptionExponent encryptionExponent: RSA.UInteger) -> RSA.TransformationParameters? {
         return encryptionExponent.inverse(modulo: eulerTotient).map { decryptionExponent in
             RSA.TransformationParameters(modulo: self.public, exponent: decryptionExponent)
         }
@@ -85,7 +85,7 @@ public struct RSAKeys: RSAKeysProtocol {
         return tooMuch - 1
     }()
     
-    internal static func areValidPrivateKeys(privateP: RSA.GreaterThanOne, privateQ: RSA.GreaterThanOne) -> Bool {
+    static func areValidPrivateKeys(privateP: RSA.GreaterThanOne, privateQ: RSA.GreaterThanOne) -> Bool {
         // First check: The primes must be distinct.
         guard privateP.value != privateQ.value else { return false }
         

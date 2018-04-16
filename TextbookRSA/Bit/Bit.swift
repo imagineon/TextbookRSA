@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum Bit {
+enum Bit {
     case zero
     case one
 }
@@ -24,7 +24,7 @@ public enum Bit {
  
  In this framework we use the little-endian order by default.
  */
-public enum ByteOrder {
+enum ByteOrder {
     case littleEndian
     case bigEndian
     

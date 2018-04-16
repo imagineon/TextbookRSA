@@ -12,28 +12,13 @@ public enum Encrypter {}
 
 extension Encrypter: EncrypterProtocol {
     public typealias RSA = TextbookRSA.RSA
-    public typealias ECB = TextbookRSA.ECB
     
     public static func encrypt(_ data: Data, parameters: RSA.TransformationParameters) -> Encrypter.EncryptedData {
         let ecb = ECB(blockSize: parameters.modulo.usedBitWidth().predecessor)
         return encrypt(data, parameters: parameters, ecb: ecb)
     }
-}
-
-public struct Decrypter: DecrypterProtocol {
-    public typealias RSA = TextbookRSA.RSA
-    public typealias ECB = TextbookRSA.ECB
     
-    public let keys: RSA.Keys
-
-    public func decrypt(_ encryptedData: Decrypter.EncryptedData) -> Data? {
-        let ecb = ECB(blockSize: keys.public.usedBitWidth().predecessor)
-        return Decrypter.decrypt(encryptedData, ecb: ecb, keys: keys)
-    }
-}
-
-fileprivate extension EncrypterProtocol {
-    static func encrypt(_ data: Data, parameters: RSA.TransformationParameters, ecb: ECB) -> EncryptedData {
+    private static func encrypt(_ data: Data, parameters: RSA.TransformationParameters, ecb: ECB) -> Encrypter.EncryptedData {
         let blocksToEncrypt = ecb.chop(data)
         let encryptedBlocks = blocksToEncrypt.map { RSA.transform($0, with: parameters) }
         
@@ -41,8 +26,21 @@ fileprivate extension EncrypterProtocol {
     }
 }
 
-fileprivate extension DecrypterProtocol {
-    static func decrypt(_ encryptedData: EncryptedData, ecb: ECB, keys: RSA.Keys) -> Data? {
+public struct Decrypter: DecrypterProtocol {
+    public typealias RSA = TextbookRSA.RSA
+    
+    public let keys: RSA.Keys
+    
+    public init(keys: RSA.Keys) {
+        self.keys = keys
+    }
+
+    public func decrypt(_ encryptedData: Decrypter.EncryptedData) -> Data? {
+        let ecb = ECB(blockSize: keys.public.usedBitWidth().predecessor)
+        return Decrypter.decrypt(encryptedData, ecb: ecb, keys: keys)
+    }
+    
+    private static func decrypt(_ encryptedData: Decrypter.EncryptedData, ecb: ECB, keys: RSA.Keys) -> Data? {
         guard let decryptionParameters = keys.generateDecryptionParameters(forEncryptionExponent: encryptedData.usedEncryptionExponent) else {
             return nil
         }

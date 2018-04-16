@@ -11,7 +11,7 @@ import Foundation
 public enum Encrypter {}
 
 extension Encrypter: EncrypterProtocol {
-    public typealias RSA = TextbookRSA.RSA
+    public typealias RSA = UIntRSA
     
     public static func encrypt(_ data: Data, parameters: RSA.TransformationParameters) -> Encrypter.EncryptedData {
         let ecb = ECB(blockSize: parameters.modulo.usedBitWidth().predecessor)
@@ -22,12 +22,12 @@ extension Encrypter: EncrypterProtocol {
         let blocksToEncrypt = ecb.chop(data)
         let encryptedBlocks = blocksToEncrypt.map { RSA.transform($0, with: parameters) }
         
-        return EncryptedData(blocks: encryptedBlocks, usedEncryptionExponent: parameters.exponent)
+        return EncryptedData(blocks: encryptedBlocks, encryptionExponent: parameters.exponent)
     }
 }
 
 public struct Decrypter: DecrypterProtocol {
-    public typealias RSA = TextbookRSA.RSA
+    public typealias RSA = UIntRSA
     
     public let keys: RSA.Keys
     
@@ -41,7 +41,7 @@ public struct Decrypter: DecrypterProtocol {
     }
     
     private static func decrypt(_ encryptedData: Decrypter.EncryptedData, ecb: ECB, keys: RSA.Keys) -> Data? {
-        guard let decryptionParameters = keys.generateDecryptionParameters(forEncryptionExponent: encryptedData.usedEncryptionExponent) else {
+        guard let decryptionParameters = keys.generateDecryptionParameters(forEncryptionExponent: encryptedData.encryptionExponent) else {
             return nil
         }
         

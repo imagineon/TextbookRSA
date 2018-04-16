@@ -11,7 +11,7 @@ import Foundation
 enum PeriodOracle {}
 
 extension PeriodOracle: PeriodOracleProtocol {
-    typealias UInteger = RSA.UInteger
+    typealias UInteger = UIntRSA.UInteger
     
     static func period(of base: UInteger, modulo: Math.Positive<UInteger>) -> Math.Positive<UInteger>? {
         guard modulo.value != 1 && base != 1 else { return try! Math.Positive(1) }

@@ -12,18 +12,18 @@ import XCTest
 class RSATests: XCTestCase {
     func testFullMessageExchange() {
         for _ in 0 ..< 1000 {
-            let keys = RSA.Keys()
+            let keys = UIntRSA.Keys()
             let message = UInt.randomInRange(min: 0, count: try! Math.Positive(UInt32(keys.public.value)))
             
             let encryptionParms = keys.generateEncryptionParameters()
-            let encryptedMessage = RSA.transform(message, with: encryptionParms)
+            let encryptedMessage = UIntRSA.transform(message, with: encryptionParms)
             
             guard let decryptionParms = keys.generateDecryptionParameters(forEncryptionExponent: encryptionParms.exponent) else {
                 XCTFail("Could not generate decryption parameters - keys: \(keys) -- encryptionParms: \(encryptionParms)")
                 continue
             }
             
-            let decryptedMessage = RSA.transform(encryptedMessage, with: decryptionParms)
+            let decryptedMessage = UIntRSA.transform(encryptedMessage, with: decryptionParms)
             
             XCTAssert(message == decryptedMessage, "keys: \(keys) -- message: \(message) -- encryptionParms: \(encryptionParms) -- encryptedMessage: \(encryptedMessage) -- decryptionParms: \(decryptionParms) -- decryptedMessage: \(decryptedMessage)")
         }

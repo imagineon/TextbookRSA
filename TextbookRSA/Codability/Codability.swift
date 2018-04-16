@@ -55,6 +55,6 @@ extension RSAKeys {
 extension EncryptedData {
     enum CodingKeys: String, CodingKey {
         case blocks
-        case usedEncryptionExponent = "exponent"
+        case encryptionExponent = "exponent"
     }
 }

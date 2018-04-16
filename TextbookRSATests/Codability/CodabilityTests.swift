@@ -19,7 +19,7 @@ class CodabilityTests: XCTestCase {
         """
         
         let validJsonData = validJsonString.data(using: .utf8)!
-        let validParms = try? JSONDecoder().decode(RSA.TransformationParameters.self, from: validJsonData)
+        let validParms = try? JSONDecoder().decode(UIntRSA.TransformationParameters.self, from: validJsonData)
         XCTAssertNotNil(validParms)
         if let validParms = validParms {
             XCTAssertEqual(validParms.modulo.value, 5)
@@ -33,7 +33,7 @@ class CodabilityTests: XCTestCase {
         """
         
         let jsonDataNoExponent = jsonStringNoExponent.data(using: .utf8)!
-        XCTAssertThrowsError(try JSONDecoder().decode(RSA.TransformationParameters.self, from: jsonDataNoExponent))
+        XCTAssertThrowsError(try JSONDecoder().decode(UIntRSA.TransformationParameters.self, from: jsonDataNoExponent))
         
         let jsonStringNoModulo = """
             {
@@ -42,7 +42,7 @@ class CodabilityTests: XCTestCase {
         """
         
         let jsonDataNoModulo = jsonStringNoModulo.data(using: .utf8)!
-        XCTAssertThrowsError(try JSONDecoder().decode(RSA.TransformationParameters.self, from: jsonDataNoModulo))
+        XCTAssertThrowsError(try JSONDecoder().decode(UIntRSA.TransformationParameters.self, from: jsonDataNoModulo))
         
         let jsonStringSmallModulo = """
             {
@@ -52,16 +52,16 @@ class CodabilityTests: XCTestCase {
         """
         
         let jsonDataSmallModulo = jsonStringSmallModulo.data(using: .utf8)!
-        XCTAssertThrowsError(try JSONDecoder().decode(RSA.TransformationParameters.self, from: jsonDataSmallModulo))
+        XCTAssertThrowsError(try JSONDecoder().decode(UIntRSA.TransformationParameters.self, from: jsonDataSmallModulo))
     }
     
     func testEncodingTransformationParameters() {
-        let parms = RSA.TransformationParameters(modulo: try! .init(5), exponent: 7)
+        let parms = UIntRSA.TransformationParameters(modulo: try! .init(5), exponent: 7)
         let encoded = try? JSONEncoder().encode(parms)
         XCTAssertNotNil(encoded)
         
         if let encoded = encoded {
-            let decoded = try? JSONDecoder().decode(RSA.TransformationParameters.self, from: encoded)
+            let decoded = try? JSONDecoder().decode(UIntRSA.TransformationParameters.self, from: encoded)
             XCTAssertNotNil(decoded)
             if let decoded = decoded {
                 XCTAssertEqual(decoded.modulo.value, parms.modulo.value)
@@ -79,7 +79,7 @@ class CodabilityTests: XCTestCase {
         """
         
         let validJsonData = validJsonString.data(using: .utf8)!
-        let validKeys = try? JSONDecoder().decode(RSA.Keys.self, from: validJsonData)
+        let validKeys = try? JSONDecoder().decode(UIntRSA.Keys.self, from: validJsonData)
         XCTAssertNotNil(validKeys)
         if let validKeys = validKeys {
             XCTAssertEqual(validKeys.private.p.value, 5)
@@ -93,7 +93,7 @@ class CodabilityTests: XCTestCase {
         """
         
         let jsonDataNoQ = jsonStringNoQ.data(using: .utf8)!
-        XCTAssertThrowsError(try JSONDecoder().decode(RSA.Keys.self, from: jsonDataNoQ))
+        XCTAssertThrowsError(try JSONDecoder().decode(UIntRSA.Keys.self, from: jsonDataNoQ))
         
         let jsonStringNoP = """
             {
@@ -102,7 +102,7 @@ class CodabilityTests: XCTestCase {
         """
         
         let jsonDataNoP = jsonStringNoP.data(using: .utf8)!
-        XCTAssertThrowsError(try JSONDecoder().decode(RSA.Keys.self, from: jsonDataNoP))
+        XCTAssertThrowsError(try JSONDecoder().decode(UIntRSA.Keys.self, from: jsonDataNoP))
         
         let jsonStringSmallP = """
             {
@@ -112,7 +112,7 @@ class CodabilityTests: XCTestCase {
         """
         
         let jsonDataSmallP = jsonStringSmallP.data(using: .utf8)!
-        XCTAssertThrowsError(try JSONDecoder().decode(RSA.Keys.self, from: jsonDataSmallP))
+        XCTAssertThrowsError(try JSONDecoder().decode(UIntRSA.Keys.self, from: jsonDataSmallP))
         
         let jsonStringSmallQ = """
             {
@@ -122,7 +122,7 @@ class CodabilityTests: XCTestCase {
         """
         
         let jsonDataSmallQ = jsonStringSmallQ.data(using: .utf8)!
-        XCTAssertThrowsError(try JSONDecoder().decode(RSA.Keys.self, from: jsonDataSmallQ))
+        XCTAssertThrowsError(try JSONDecoder().decode(UIntRSA.Keys.self, from: jsonDataSmallQ))
         
         let jsonStringLargeFactors = """
             {
@@ -132,7 +132,7 @@ class CodabilityTests: XCTestCase {
         """
         
         let jsonDataLargeFactors = jsonStringLargeFactors.data(using: .utf8)!
-        XCTAssertThrowsError(try JSONDecoder().decode(RSA.Keys.self, from: jsonDataLargeFactors))
+        XCTAssertThrowsError(try JSONDecoder().decode(UIntRSA.Keys.self, from: jsonDataLargeFactors))
         
         let jsonStringEqualFactors = """
             {
@@ -142,16 +142,16 @@ class CodabilityTests: XCTestCase {
         """
         
         let jsonDataEqualFactors = jsonStringEqualFactors.data(using: .utf8)!
-        XCTAssertThrowsError(try JSONDecoder().decode(RSA.Keys.self, from: jsonDataEqualFactors))
+        XCTAssertThrowsError(try JSONDecoder().decode(UIntRSA.Keys.self, from: jsonDataEqualFactors))
     }
     
     func testEncodingKeys() {
-        let keys = try! RSA.Keys(privateP: try! .init(5), privateQ: try! .init(7))
+        let keys = try! UIntRSA.Keys(privateP: try! .init(5), privateQ: try! .init(7))
         let encoded = try? JSONEncoder().encode(keys)
         XCTAssertNotNil(encoded)
         
         if let encoded = encoded {
-            let decoded = try? JSONDecoder().decode(RSA.Keys.self, from: encoded)
+            let decoded = try? JSONDecoder().decode(UIntRSA.Keys.self, from: encoded)
             XCTAssertNotNil(decoded)
             if let decoded = decoded {
                 XCTAssertEqual(decoded.private.p.value, keys.private.p.value)
@@ -177,7 +177,7 @@ class CodabilityTests: XCTestCase {
         XCTAssertNotNil(valid)
         if let valid = valid {
             XCTAssertEqual(valid.blocks, [1, 2, 3])
-            XCTAssertEqual(valid.usedEncryptionExponent, 7)
+            XCTAssertEqual(valid.encryptionExponent, 7)
         }
         
         let validJsonStringEmptyBlocks = """
@@ -193,7 +193,7 @@ class CodabilityTests: XCTestCase {
         XCTAssertNotNil(validEmptyBlocks)
         if let validEmptyBlocks = validEmptyBlocks {
             XCTAssertEqual(validEmptyBlocks.blocks, [])
-            XCTAssertEqual(validEmptyBlocks.usedEncryptionExponent, 7)
+            XCTAssertEqual(validEmptyBlocks.encryptionExponent, 7)
         }
         
         let jsonStringNoBlocks = """
@@ -220,7 +220,7 @@ class CodabilityTests: XCTestCase {
     }
     
     func testEncodingEncryptedData() {
-        let encryptedData = Encrypter.EncryptedData(blocks: [1, 2, 3], usedEncryptionExponent: 7)
+        let encryptedData = Encrypter.EncryptedData(blocks: [1, 2, 3], encryptionExponent: 7)
         let encoded = try? JSONEncoder().encode(encryptedData)
         XCTAssertNotNil(encoded)
         
@@ -229,7 +229,7 @@ class CodabilityTests: XCTestCase {
             XCTAssertNotNil(decoded)
             if let decoded = decoded {
                 XCTAssertEqual(decoded.blocks, encryptedData.blocks)
-                XCTAssertEqual(decoded.usedEncryptionExponent, encryptedData.usedEncryptionExponent)
+                XCTAssertEqual(decoded.encryptionExponent, encryptedData.encryptionExponent)
             }
         }
     }

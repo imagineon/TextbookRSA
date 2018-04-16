@@ -9,7 +9,7 @@
 import Foundation
 
 public struct PeriodDecrypter: DecrypterProtocol {
-    public typealias RSA = TextbookRSA.RSA
+    public typealias RSA = UIntRSA
     
     public let publicKey: RSA.GreaterThanOne
     
@@ -26,7 +26,7 @@ public struct PeriodDecrypter: DecrypterProtocol {
                 continue
             }
             
-            guard let decryptBlockResult = decrypt(block: block, usedEncryptionExponent: encryptedData.usedEncryptionExponent) else {
+            guard let decryptBlockResult = decrypt(block: block, encryptionExponent: encryptedData.encryptionExponent) else {
                 return nil
             }
             
@@ -51,7 +51,7 @@ public struct PeriodDecrypter: DecrypterProtocol {
         case keys(RSA.Keys)
     }
     
-    func decrypt(block: ECB.Block, usedEncryptionExponent: RSA.UInteger) -> DecryptBlockResult? {
+    func decrypt(block: ECB.Block, encryptionExponent: RSA.UInteger) -> DecryptBlockResult? {
         guard block != 0 else {
             return .block(0)
         }
@@ -59,7 +59,7 @@ public struct PeriodDecrypter: DecrypterProtocol {
         if let keys = tryToExtractKeys(from: block) {
             return .keys(keys)
         } else if let period = PeriodOracle.period(of: block, modulo: publicKey.positive) {
-            return decrypt(block: block, usedEncryptionExponent: usedEncryptionExponent, period: period).map {
+            return decrypt(block: block, encryptionExponent: encryptionExponent, period: period).map {
                 .block($0)
             }
         } else {
@@ -77,8 +77,8 @@ public struct PeriodDecrypter: DecrypterProtocol {
         return try? RSA.Keys(privateP: privateP, privateQ: privateQ)
     }
     
-    func decrypt(block: ECB.Block, usedEncryptionExponent: RSA.UInteger, period: RSA.Positive) -> ECB.Block? {
-        guard let decryptionExponent = usedEncryptionExponent.inverse(modulo: period) else { return nil }
+    func decrypt(block: ECB.Block, encryptionExponent: RSA.UInteger, period: RSA.Positive) -> ECB.Block? {
+        guard let decryptionExponent = encryptionExponent.inverse(modulo: period) else { return nil }
         let decryptionParameters = RSA.TransformationParameters(modulo: publicKey, exponent: decryptionExponent)
         return RSA.transform(block, with: decryptionParameters)
     }

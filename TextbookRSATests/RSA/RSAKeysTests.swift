@@ -53,7 +53,7 @@ class RSAKeysTests: XCTestCase {
     
     func testKeyGenerationTime() {
         let (keys, totalKeyGenTime) = Timing.evaluate {
-            return (0 ..< 1_000).map { _ in return RSA.Keys() }
+            return (0 ..< 1_000).map { _ in return UIntRSA.Keys() }
         }
         
         guard let averageKeyGenTime = totalKeyGenTime.map({ $0 / TimeInterval(keys.count) }) else {
@@ -65,7 +65,7 @@ class RSAKeysTests: XCTestCase {
     }
     
     func testEncryptionParametersGenerationTime() {
-        let keys = (0 ..< 1_000).map { _ in return RSA.Keys() }
+        let keys = (0 ..< 1_000).map { _ in return UIntRSA.Keys() }
         
         let (parms, totalParmsGenTime) = Timing.evaluate {
             return keys.map { $0.generateEncryptionParameters() }

@@ -1,5 +1,5 @@
 //
-//  RSA.swift
+//  UIntRSA.swift
 //  TextbookRSA
 //
 //  Created by Tomás Silveira Salles on 09.04.18.
@@ -9,9 +9,9 @@
 import Foundation
 
 /// A namespace for RSA functions and types.
-public enum RSA {}
+public enum UIntRSA {}
 
-extension RSA: RSAProtocol {
+extension UIntRSA: RSAProtocol {
     public typealias UInteger = UInt
     public typealias Keys = RSAKeys
     

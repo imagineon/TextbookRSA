@@ -12,7 +12,7 @@ import XCTest
 class EncrypterAndDecrypterTests: XCTestCase {
     func testEncryptAndDecryptData() {
         for iteration in 0 ..< 100 {
-            let keys = RSA.Keys()
+            let keys = UIntRSA.Keys()
             let decrypter = Decrypter(keys: keys)
             let message = (iteration < 10) ? Data(bytes: []) :
                 Data(bytes: (0 ..< 10).map { _ in UInt8(arc4random_uniform(UInt32(UInt8.max) + 1)) })
@@ -25,7 +25,7 @@ class EncrypterAndDecrypterTests: XCTestCase {
     
     func testEncryptAndDecryptText() {
         for iteration in 0 ..< 100 {
-            let keys = RSA.Keys()
+            let keys = UIntRSA.Keys()
             let decrypter = Decrypter(keys: keys)
             let message: String = {
                 switch iteration {

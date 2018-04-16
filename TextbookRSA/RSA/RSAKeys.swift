@@ -15,7 +15,7 @@ extension RSAKeysProtocol {
 }
 
 public struct RSAKeys: RSAKeysProtocol {
-    public typealias RSA = TextbookRSA.RSA
+    public typealias RSA = UIntRSA
     
     public let `private`: (p: RSA.GreaterThanOne, q: RSA.GreaterThanOne)
     

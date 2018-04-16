@@ -10,7 +10,7 @@ import Foundation
 
 public struct EncryptedData<Block: Codable, UInteger: UnsignedInteger & Codable>: Codable {
     public let blocks: [Block]
-    public let usedEncryptionExponent: UInteger
+    public let encryptionExponent: UInteger
 }
 
 public protocol EncrypterProtocol {

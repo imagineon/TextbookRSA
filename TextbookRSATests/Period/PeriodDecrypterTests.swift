@@ -36,8 +36,8 @@ class PeriodDecrypterTests: XCTestCase {
             }
 
             let keysMatch =
-                (revealedKeys.private.p.value == keys.private.p.value && revealedKeys.private.q.value == keys.private.q.value)
-                || (revealedKeys.private.p.value == keys.private.q.value && revealedKeys.private.q.value == keys.private.p.value)
+                (revealedKeys.private.p == keys.private.p && revealedKeys.private.q == keys.private.q)
+                || (revealedKeys.private.p == keys.private.q && revealedKeys.private.q == keys.private.p)
             XCTAssertTrue(keysMatch, "keys: \(keys) -- revealingBlock: \(revealingBlock) -- revealedKeys: \(revealedKeys)")
         }
     }

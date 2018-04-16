@@ -64,7 +64,7 @@ class CodabilityTests: XCTestCase {
             let decoded = try? JSONDecoder().decode(UIntRSA.TransformationParameters.self, from: encoded)
             XCTAssertNotNil(decoded)
             if let decoded = decoded {
-                XCTAssertEqual(decoded.modulo.value, parms.modulo.value)
+                XCTAssertEqual(decoded.modulo, parms.modulo)
                 XCTAssertEqual(decoded.exponent, parms.exponent)
             }
         }
@@ -154,8 +154,8 @@ class CodabilityTests: XCTestCase {
             let decoded = try? JSONDecoder().decode(UIntRSA.Keys.self, from: encoded)
             XCTAssertNotNil(decoded)
             if let decoded = decoded {
-                XCTAssertEqual(decoded.private.p.value, keys.private.p.value)
-                XCTAssertEqual(decoded.private.q.value, keys.private.q.value)
+                XCTAssertEqual(decoded.private.p, keys.private.p)
+                XCTAssertEqual(decoded.private.q, keys.private.q)
             }
         }
     }

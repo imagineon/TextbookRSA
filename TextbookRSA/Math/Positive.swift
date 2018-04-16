@@ -27,7 +27,7 @@ extension Math {
     }
     
     /// Wrapper around an integral value which guarantees the value is greater than 1.
-    public struct GreaterThanOne<Value: BinaryInteger> {
+    public struct GreaterThanOne<Value: BinaryInteger>: Comparable {
         public let value: Value
         
         init(_ value: Value) throws {
@@ -48,6 +48,14 @@ extension Math {
         
         static func *(left: GreaterThanOne, right: GreaterThanOne) -> GreaterThanOne<Value> {
             return try! GreaterThanOne(left.value * right.value)
+        }
+        
+        public static func <(lhs: Math.GreaterThanOne<Value>, rhs: Math.GreaterThanOne<Value>) -> Bool {
+            return lhs.value < rhs.value
+        }
+        
+        public static func ==(lhs: Math.GreaterThanOne<Value>, rhs: Math.GreaterThanOne<Value>) -> Bool {
+            return lhs.value == rhs.value
         }
     }
 }

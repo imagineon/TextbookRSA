@@ -77,4 +77,50 @@ class PeriodDecrypterTests: XCTestCase {
             XCTAssertEqual(decryptedBlock, block, "keys: \(keys) -- block: \(block) -- period: \(period) -- encryptionParms: \(encryptionParms) -- encryptedBlock: \(encryptedBlock) -- decryptedBlock: \(String(describing: decryptedBlock))")
         }
     }
+    
+    func testDecryptBlock() {
+        for _ in 0 ..< 100 {
+            let keys = PeriodDecrypterTests.smallKeys() // We cannot run tests with ordinary keys because period finding is very very hard!
+            let encryptionParms = keys.generateEncryptionParameters()
+            let decrypter = PeriodDecrypter(publicKey: keys.public)
+            
+            let coprimeBlock = PeriodDecrypterTests.block(coprimeTo: try! .init(UInt32(keys.public.value)))
+            let encryptedCoprimeBlock = RSA.transform(coprimeBlock, with: encryptionParms)
+            let decryptedCoprimeBlock = decrypter.decrypt(block: encryptedCoprimeBlock, usedEncryptionExponent: encryptionParms.exponent)
+            let successOnCoprimeBlock: Bool = {
+                if let decryptedCoprimeBlock = decryptedCoprimeBlock, case .block = decryptedCoprimeBlock {
+                    return true
+                } else {
+                    return false
+                }
+            }()
+            
+            XCTAssertTrue(successOnCoprimeBlock, "Could not decrypt even though the block was coprime with the public key. - keys: \(keys) -- encryptionParms: \(encryptionParms) -- coprimeBlock: \(coprimeBlock) -- encryptedCoprimeBlock: \(encryptedCoprimeBlock) -- decryptedCoprimeBlock: \(String(describing: decryptedCoprimeBlock))")
+            
+            let revealingBlock = keys.private.p.value * (keys.private.q.value / 2)
+            let encryptedRevealingBlock = RSA.transform(revealingBlock, with: encryptionParms)
+            let decryptedRevealingBlock = decrypter.decrypt(block: encryptedRevealingBlock, usedEncryptionExponent: encryptionParms.exponent)
+            let successOnRevealingBlock: Bool = {
+                if let decryptedRevealingBlock = decryptedRevealingBlock, case .keys = decryptedRevealingBlock {
+                    return true
+                } else {
+                    return false
+                }
+            }()
+            
+            XCTAssertTrue(successOnRevealingBlock, "Could not obtain keys even though the block was not coprime with the public key. - keys: \(keys) -- encryptionParms: \(encryptionParms) -- revealingBlock: \(revealingBlock) -- encryptedRevealingBlock: \(encryptedRevealingBlock) -- decryptedRevealingBlock: \(String(describing: decryptedRevealingBlock))")
+            
+            let zeroBlock = RSA.UInteger(0)
+            let decryptedZeroBlock = decrypter.decrypt(block: zeroBlock, usedEncryptionExponent: encryptionParms.exponent)
+            let successOnZeroBlock: Bool = {
+                if let decryptedZeroBlock = decryptedZeroBlock, case .block(0) = decryptedZeroBlock {
+                    return true
+                } else {
+                    return false
+                }
+            }()
+            
+            XCTAssertTrue(successOnZeroBlock, "Did not handle case `block == 0` correctly. - keys: \(keys) -- encryptionParms: \(encryptionParms) -- decryptedZeroBlock: \(String(describing: decryptedZeroBlock))")
+        }
+    }
 }

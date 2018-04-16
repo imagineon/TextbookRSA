@@ -10,6 +10,7 @@ import Foundation
 
 public struct PeriodDecrypter: DecrypterProtocol {
     public typealias RSA = UIntRSA
+    typealias ECB = UIntECB
     
     public let publicKey: RSA.GreaterThanOne
     

@@ -12,6 +12,7 @@ public enum Encrypter {}
 
 extension Encrypter: EncrypterProtocol {
     public typealias RSA = UIntRSA
+    typealias ECB = UIntECB
     
     public static func encrypt(_ data: Data, parameters: RSA.TransformationParameters) -> Encrypter.EncryptedData {
         let ecb = ECB(blockSize: parameters.modulo.usedBitWidth().predecessor)
@@ -28,6 +29,7 @@ extension Encrypter: EncrypterProtocol {
 
 public struct Decrypter: DecrypterProtocol {
     public typealias RSA = UIntRSA
+    typealias ECB = UIntECB
     
     public let keys: RSA.Keys
     

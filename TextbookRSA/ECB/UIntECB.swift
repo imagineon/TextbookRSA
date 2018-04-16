@@ -1,5 +1,5 @@
 //
-//  ECB.swift
+//  UIntECB.swift
 //  TextbookRSA
 //
 //  Created by Tomás Silveira Salles on 13.04.18.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ECB: ECBProtocol {
+struct UIntECB: ECBProtocol {
     typealias Block = UInt
     
     let blockSize: Math.Positive<Int>
@@ -32,18 +32,18 @@ struct ECB: ECBProtocol {
     
     func reconstruct(_ blocks: [Block]) -> Data? {
         // If any of the blocks uses more than `blockSize` bits in its base-2 representation,
-        // these blocks were not created using `ECB.chop` with the same `blockSize`.
+        // these blocks were not created using `UIntECB.chop` with the same `blockSize`.
         let maxBlock = (1 << blockSize.value)
         guard blocks.first(where: { $0 >= maxBlock }) == nil else { return nil }
         
         let padded = Array(blocks.map { $0.base2() }.map { $0 + Array<Bit>(repeating: .zero, count: blockSize.value - $0.count) }.joined())
         
         // If there is no bit equal to 1, or if the last 1 is followed by more than `blockSize - 1` many 0s,
-        // these blocks were not created using `ECB.chop` with the same `blockSize`.
+        // these blocks were not created using `UIntECB.chop` with the same `blockSize`.
         guard let lastOne = padded.index(ofLast: .one), padded.count - lastOne <= blockSize.value else { return nil }
         
         // If after removing the padding the length of the remaining array of bits is not a multiple of 8,
-        // these blocks were not created using `ECB.chop`.
+        // these blocks were not created using `UIntECB.chop`.
         let bits = Array(padded[0 ..< lastOne])
         guard bits.count % 8 == 0 else { return nil }
         

@@ -154,8 +154,7 @@ class CodabilityTests: XCTestCase {
             let decoded = try? JSONDecoder().decode(UIntRSA.Keys.self, from: encoded)
             XCTAssertNotNil(decoded)
             if let decoded = decoded {
-                XCTAssertEqual(decoded.private.p, keys.private.p)
-                XCTAssertEqual(decoded.private.q, keys.private.q)
+                XCTAssertEqual(decoded, keys)
             }
         }
     }

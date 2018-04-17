@@ -62,7 +62,7 @@ Alice receives Bob's (public) message containing the encryption parameters as a 
 ```swift
 let encryptionParmsJSON = Data(/* ... get the JSON data sent by Bob ... */)
 let encryptionParms = try JSONDecoder().decode(
-RSA.TransformationParameters.self, from: encryptionParmsJSON)
+    RSA.TransformationParameters.self, from: encryptionParmsJSON)
 ```
 
 Now Alice can use the encryption parameters to encrypt her secret message. If her message is an arbitrary file, i.e. a stream of bytes, she can encrypt an object of type `Data`:
@@ -96,7 +96,7 @@ First, Bob needs to turn the JSON data he received into an `Encrypter.EncryptedD
 ```swift
 let encryptedMessageJSON = Data(/* ... get the JSON data sent by Alice ... */)
 let encryptedMessage = try JSONDecoder().decode(
-Encrypter.EncryptedData.self, from: encryptedMessageJSON)
+    Encrypter.EncryptedData.self, from: encryptedMessageJSON)
 ```
 
 He will also need his keys, which are stored somewhere in a file:
@@ -141,9 +141,9 @@ let encryptedMessageJSON = Data(/* ... get the JSON data for the encrypted messa
 
 // Convert JSON data into objects from the framework:
 let encryptionParms = try JSONDecoder().decode(
-RSA.TransformationParameters.self, from: encryptionParmsJSON)
+    RSA.TransformationParameters.self, from: encryptionParmsJSON)
 let encryptedMessage = try JSONDecoder().decode(
-Encrypter.EncryptedData.self, from: encryptedMessageJSON)
+    Encrypter.EncryptedData.self, from: encryptedMessageJSON)
 
 // Initialize a decrypter:
 let decrypter = PeriodDecrypter(publicKey: encryptionParms.modulo)

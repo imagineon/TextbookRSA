@@ -29,6 +29,7 @@
 		7C48B16D20809BF800F0C05D /* ECBProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C48B16C20809BF800F0C05D /* ECBProtocol.swift */; };
 		7C48B16F20809C2300F0C05D /* EncrypterProtocol+DecrypterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C48B16E20809C2300F0C05D /* EncrypterProtocol+DecrypterProtocol.swift */; };
 		7C48B1712080A6D200F0C05D /* Encrypter+Decrypter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C48B1702080A6D200F0C05D /* Encrypter+Decrypter.swift */; };
+		7C5816122085FC6700AB3F9C /* SmallKeysTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5816112085FC6700AB3F9C /* SmallKeysTests.swift */; };
 		7C5933C4207B7911008801DE /* Positive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5933C3207B7911008801DE /* Positive.swift */; };
 		7C5933C8207CA4C6008801DE /* Bit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5933C7207CA4C6008801DE /* Bit.swift */; };
 		7C5933CA207CBCC3008801DE /* BitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5933C9207CBCC3008801DE /* BitTests.swift */; };
@@ -44,6 +45,7 @@
 		7CD56D29208210E3008469C4 /* PeriodOracle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD56D28208210E3008469C4 /* PeriodOracle.swift */; };
 		7CD56D2B208211DE008469C4 /* PeriodOracleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD56D2A208211DE008469C4 /* PeriodOracleTests.swift */; };
 		7CD56D2D20822E94008469C4 /* PeriodDecrypter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD56D2C20822E94008469C4 /* PeriodDecrypter.swift */; };
+		7CF95AA52085F93F00CCFF71 /* SmallKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF95AA42085F93F00CCFF71 /* SmallKeys.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +84,7 @@
 		7C48B16C20809BF800F0C05D /* ECBProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ECBProtocol.swift; sourceTree = "<group>"; };
 		7C48B16E20809C2300F0C05D /* EncrypterProtocol+DecrypterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EncrypterProtocol+DecrypterProtocol.swift"; sourceTree = "<group>"; };
 		7C48B1702080A6D200F0C05D /* Encrypter+Decrypter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encrypter+Decrypter.swift"; sourceTree = "<group>"; };
+		7C5816112085FC6700AB3F9C /* SmallKeysTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallKeysTests.swift; sourceTree = "<group>"; };
 		7C5933C3207B7911008801DE /* Positive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Positive.swift; sourceTree = "<group>"; };
 		7C5933C7207CA4C6008801DE /* Bit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bit.swift; sourceTree = "<group>"; };
 		7C5933C9207CBCC3008801DE /* BitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitTests.swift; sourceTree = "<group>"; };
@@ -98,6 +101,7 @@
 		7CD56D28208210E3008469C4 /* PeriodOracle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodOracle.swift; sourceTree = "<group>"; };
 		7CD56D2A208211DE008469C4 /* PeriodOracleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodOracleTests.swift; sourceTree = "<group>"; };
 		7CD56D2C20822E94008469C4 /* PeriodDecrypter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodDecrypter.swift; sourceTree = "<group>"; };
+		7CF95AA42085F93F00CCFF71 /* SmallKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallKeys.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -273,6 +277,7 @@
 				7CD56D232081F836008469C4 /* PeriodOracleProtocol.swift */,
 				7CD56D28208210E3008469C4 /* PeriodOracle.swift */,
 				7CD56D2C20822E94008469C4 /* PeriodDecrypter.swift */,
+				7CF95AA42085F93F00CCFF71 /* SmallKeys.swift */,
 			);
 			path = Period;
 			sourceTree = "<group>";
@@ -282,6 +287,7 @@
 			children = (
 				7CD56D2A208211DE008469C4 /* PeriodOracleTests.swift */,
 				7CC4ED3E20849531002362D5 /* PeriodDecrypterTests.swift */,
+				7C5816112085FC6700AB3F9C /* SmallKeysTests.swift */,
 			);
 			path = Period;
 			sourceTree = "<group>";
@@ -416,6 +422,7 @@
 				7C30B0DA207B548200482BEC /* Prime.swift in Sources */,
 				7C30B0DE207B5E2900482BEC /* Math.swift in Sources */,
 				7C30B0E5207B726800482BEC /* UIntRSAKeys.swift in Sources */,
+				7CF95AA52085F93F00CCFF71 /* SmallKeys.swift in Sources */,
 				7CD56D2D20822E94008469C4 /* PeriodDecrypter.swift in Sources */,
 				7C5933D0207CD153008801DE /* ModularInverse.swift in Sources */,
 				7C48B15F207E282300F0C05D /* CryptoRandom.swift in Sources */,
@@ -440,6 +447,7 @@
 				7C5933D2207CD163008801DE /* ModularInverseTests.swift in Sources */,
 				7C22B0F02081036200C53C82 /* ECBTests.swift in Sources */,
 				7C48B161207F53F700F0C05D /* RSAKeysTests.swift in Sources */,
+				7C5816122085FC6700AB3F9C /* SmallKeysTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

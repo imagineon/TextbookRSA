@@ -39,25 +39,9 @@ class PeriodDecrypterTests: XCTestCase {
         }
     }
     
-    private static func smallKeys() -> UIntRSA.Keys {
-        var result: UIntRSA.Keys?
-
-        repeat {
-            let min = UInt(2)
-            let max = UInt(100)
-            
-            let privateP = UInt.randomPrimeInRange(min: min, count: try! Math.Positive(UInt32(max - min)))
-            let privateQ = UInt.randomPrimeInRange(min: min, count: try! Math.Positive(UInt32(max - min)))
-            
-            result = try? UIntRSA.Keys(privateP: privateP, privateQ: privateQ)
-        } while result == nil
-        
-        return result!
-    }
-    
     func testDecryptBlockWithPeriod() {
         for _ in 0 ..< 100 {
-            let keys = PeriodDecrypterTests.smallKeys() // We cannot run tests with ordinary keys because period finding is very very hard!
+            let keys = UIntRSA.Keys.small(maxPrime: 100) // We cannot run tests with ordinary keys because period finding is very very hard!
             let decrypter = PeriodDecrypter(publicKey: keys.public)
             
             let block = PeriodDecrypterTests.block(coprimeTo: try! .init(UInt32(keys.public.value)))
@@ -77,7 +61,7 @@ class PeriodDecrypterTests: XCTestCase {
     
     func testDecryptBlock() {
         for _ in 0 ..< 100 {
-            let keys = PeriodDecrypterTests.smallKeys() // We cannot run tests with ordinary keys because period finding is very very hard!
+            let keys = UIntRSA.Keys.small(maxPrime: 100) // We cannot run tests with ordinary keys because period finding is very very hard!
             let encryptionParms = keys.generateEncryptionParameters()
             let decrypter = PeriodDecrypter(publicKey: keys.public)
             
@@ -123,7 +107,7 @@ class PeriodDecrypterTests: XCTestCase {
     
     func testEncryptAndDecryptData() {
         for iteration in 0 ..< 100 {
-            let keys = PeriodDecrypterTests.smallKeys() // We cannot run tests with ordinary keys because period finding is very very hard!
+            let keys = UIntRSA.Keys.small(maxPrime: 100) // We cannot run tests with ordinary keys because period finding is very very hard!
             let decrypter = PeriodDecrypter(publicKey: keys.public)
             let message = (iteration < 10) ? Data(bytes: []) :
                 Data(bytes: (0 ..< 10).map { _ in UInt8(arc4random_uniform(UInt32(UInt8.max) + 1)) })
@@ -136,7 +120,7 @@ class PeriodDecrypterTests: XCTestCase {
     
     func testEncryptAndDecryptText() {
         for iteration in 0 ..< 100 {
-            let keys = PeriodDecrypterTests.smallKeys() // We cannot run tests with ordinary keys because period finding is very very hard!
+            let keys = UIntRSA.Keys.small(maxPrime: 100) // We cannot run tests with ordinary keys because period finding is very very hard!
             let decrypter = PeriodDecrypter(publicKey: keys.public)
             let message: String = {
                 switch iteration {

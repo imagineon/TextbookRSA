@@ -78,4 +78,13 @@ class RSAKeysTests: XCTestCase {
 
         XCTAssertLessThan(averageParmsGenTime, 0.001)
     }
+    
+    func testEquality() {
+        let keys_5_7 = try! RSAKeys(privateP: try! .init(5), privateQ: try! .init(7))
+        let keys_5_7_again = try! RSAKeys(privateP: try! .init(5), privateQ: try! .init(7))
+        let keys_7_5 = try! RSAKeys(privateP: try! .init(7), privateQ: try! .init(5))
+        
+        XCTAssertEqual(keys_5_7, keys_5_7_again)
+        XCTAssertEqual(keys_5_7, keys_7_5)
+    }
 }

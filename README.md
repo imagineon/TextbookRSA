@@ -167,6 +167,24 @@ __IMPORTANT:__ Remember how we said that period finding is *really* hard? If you
 let keys = RSA.Keys.small(maxPrime: 100)
 ```
 
+## Installing
+
+Besides the obvious possibility of cloning the repository manually and using/modifying the source files as you wish, we also support installation via CocoaPods.
+
+To install using CocoaPods, add the line
+
+```ruby
+pod 'TextbookRSA', '~> 0.0.1'
+```
+
+to your `Podfile` and run
+
+```bash
+$ pod install
+```
+
+If you're not familiar with CocoaPods, you can learn all about it [here](http://cocoapods.org).
+
 ## License
 
 TextbookRSA is distributed with an MIT license (click [here](https://github.com/imagineon/TextbookRSA/blob/master/LICENSE) for more details). But have I mentioned it is not meant for real-world applications? DON'T YOU DARE USE THIS FRAMEWORK FOR REAL-WORLD ENCRYPTION!

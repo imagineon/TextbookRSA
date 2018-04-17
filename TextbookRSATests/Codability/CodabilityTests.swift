@@ -226,8 +226,7 @@ class CodabilityTests: XCTestCase {
             let decoded = try? JSONDecoder().decode(Encrypter.EncryptedData.self, from: encoded)
             XCTAssertNotNil(decoded)
             if let decoded = decoded {
-                XCTAssertEqual(decoded.blocks, encryptedData.blocks)
-                XCTAssertEqual(decoded.encryptionExponent, encryptedData.encryptionExponent)
+                XCTAssertEqual(decoded, encryptedData)
             }
         }
     }

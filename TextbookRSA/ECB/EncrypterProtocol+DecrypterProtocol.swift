@@ -8,9 +8,15 @@
 
 import Foundation
 
-public struct ECBEncryptedData<Block: Codable, UInteger: UnsignedInteger & Codable>: Codable {
+public struct ECBEncryptedData<Block: Equatable & Codable, UInteger: UnsignedInteger & Codable>: Codable, Equatable {
     public let blocks: [Block]
     public let encryptionExponent: UInteger
+}
+
+extension ECBEncryptedData {
+    public static func ==(lhs: ECBEncryptedData, rhs: ECBEncryptedData) -> Bool {
+        return (lhs.blocks == rhs.blocks && lhs.encryptionExponent == rhs.encryptionExponent)
+    }
 }
 
 public protocol EncrypterProtocol {

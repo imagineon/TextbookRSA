@@ -37,7 +37,7 @@ let encodedEncryptedDataMessage = try JSONEncoder().encode(encryptedDataMessage)
 let encodedEncryptedDataMessageString = String(data: encodedEncryptedDataMessage, encoding: .utf8)
 print(String(describing: encodedEncryptedDataMessageString))
 let decodedEncryptedDataMessage = try JSONDecoder().decode(Encrypter.EncryptedData.self, from: encodedEncryptedDataMessage)
-print(decodedEncryptedDataMessage.blocks == encryptedDataMessage.blocks && decodedEncryptedDataMessage.encryptionExponent == encryptedDataMessage.encryptionExponent)
+print(decodedEncryptedDataMessage == encryptedDataMessage)
 
 let decryptedDataMessage = decrypter.decrypt(encryptedDataMessage)
 print(dataMessage == decryptedDataMessage)

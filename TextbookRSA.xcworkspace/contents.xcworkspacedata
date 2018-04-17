@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:TextbookRSA.podspec">
+   </FileRef>
+   <FileRef
       location = "group:TextbookRSA.playground">
    </FileRef>
    <FileRef

@@ -13,7 +13,7 @@ public struct RSATransformationParameters<RSA: RSAProtocol>: Codable {
     public let exponent: RSA.UInteger
 }
 
-public protocol RSAKeysProtocol: Codable {
+public protocol RSAKeysProtocol: Codable, Equatable {
     associatedtype RSA: RSAProtocol
     
     /// The two (secret) prime factors of the public key.
@@ -25,6 +25,13 @@ public protocol RSAKeysProtocol: Codable {
     
     /// Generate parameters for encryption by randomly choosing a suitable exponent.
     func generateEncryptionParameters() -> RSA.TransformationParameters
+}
+
+extension RSAKeysProtocol {
+    public static func ==(lhs: Self, rhs: Self) -> Bool {
+        return (lhs.private.p == rhs.private.p && lhs.private.q == rhs.private.q) ||
+            (lhs.private.p == rhs.private.q && lhs.private.q == rhs.private.p)
+    }
 }
 
 public protocol RSAProtocol {

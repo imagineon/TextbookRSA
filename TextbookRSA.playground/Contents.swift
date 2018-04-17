@@ -10,7 +10,7 @@ let encodedKeys = try JSONEncoder().encode(keys)
 let encodedKeysString = String(data: encodedKeys, encoding: .utf8)
 print(String(describing: encodedKeysString))
 let decodedKeys = try JSONDecoder().decode(UIntRSA.Keys.self, from: encodedKeys)
-print(decodedKeys.private.p == keys.private.p && decodedKeys.private.q == keys.private.q)
+print(decodedKeys == keys)
 
 let decrypter = Decrypter(keys: keys)
 

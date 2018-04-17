@@ -35,10 +35,7 @@ class PeriodDecrypterTests: XCTestCase {
                 continue
             }
 
-            let keysMatch =
-                (revealedKeys.private.p == keys.private.p && revealedKeys.private.q == keys.private.q)
-                || (revealedKeys.private.p == keys.private.q && revealedKeys.private.q == keys.private.p)
-            XCTAssertTrue(keysMatch, "keys: \(keys) -- revealingBlock: \(revealingBlock) -- revealedKeys: \(revealedKeys)")
+            XCTAssertEqual(revealedKeys, keys, "keys: \(keys) -- revealingBlock: \(revealingBlock) -- revealedKeys: \(revealedKeys)")
         }
     }
     

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct RSATransformationParameters<RSA: RSAProtocol>: Codable, Equatable {
+public struct RSATransformationParameters<RSA: RSAProtocol>: Codable, Equatable, CustomStringConvertible {
     public let modulo: RSA.GreaterThanOne
     public let exponent: RSA.UInteger
 }
@@ -16,6 +16,10 @@ public struct RSATransformationParameters<RSA: RSAProtocol>: Codable, Equatable 
 extension RSATransformationParameters {
     public static func ==(lhs: RSATransformationParameters, rhs: RSATransformationParameters) -> Bool {
         return (lhs.modulo == rhs.modulo && lhs.exponent == rhs.exponent)
+    }
+    
+    public var description: String {
+        return "RSATransformationParameters(modulo: \(modulo), exponent: \(exponent))"
     }
 }
 

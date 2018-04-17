@@ -10,11 +10,13 @@ func assertPublic<T>(_ value: T) {
     // NOP
 }
 
+typealias RSA = UIntRSA
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // Keys:
 // Generate, access public members, print, encode as json and decode from json.
 
-let keys = UIntRSA.Keys()
+let keys = RSA.Keys()
 assertPublic(keys.primes.p.value)
 assertPublic(keys.primes.q.value)
 assertPublic(keys.public.value)
@@ -26,7 +28,7 @@ let encodedKeysString = String(data: encodedKeys, encoding: .utf8)
 
 print("Keys as json: \(encodedKeysString ?? "nil")")
 
-let decodedKeys = try JSONDecoder().decode(UIntRSA.Keys.self, from: encodedKeys)
+let decodedKeys = try JSONDecoder().decode(RSA.Keys.self, from: encodedKeys)
 
 print("Encoding + decoding keys: \(success(decodedKeys == keys))")
 
@@ -47,7 +49,7 @@ let encodedEncryptionParmsString = String(data: encodedEncryptionParms, encoding
 
 print("Encryption parameters as json: \(encodedEncryptionParmsString ?? "nil")")
 
-let decodedEncryptionParms = try JSONDecoder().decode(UIntRSA.TransformationParameters.self, from: encodedEncryptionParms)
+let decodedEncryptionParms = try JSONDecoder().decode(RSA.TransformationParameters.self, from: encodedEncryptionParms)
 
 print("Encoding + decoding encryption parameters: \(success(decodedEncryptionParms == encryptionParms))")
 
@@ -122,7 +124,7 @@ print()
 // Keys:
 // Generate small.
 
-let smallKeys = UIntRSA.Keys.small(maxPrime: 100)
+let smallKeys = RSA.Keys.small(maxPrime: 100)
 
 print("Small keys: \(smallKeys)")
 
@@ -140,7 +142,7 @@ let smallEncryptedDataMessage = Encrypter.encrypt(dataMessage, parameters: small
 
 print("Data message, encrypted with small parameters: \(smallEncryptedDataMessage)")
 
-let periodDecrypter = PeriodDecrypter(publicKey: smallKeys.public)
+let periodDecrypter = PeriodDecrypter(publicKey: smallEncryptionParameters.modulo)
 
 let smallPeriodDecryptedDataMessage = periodDecrypter.decrypt(smallEncryptedDataMessage)
 

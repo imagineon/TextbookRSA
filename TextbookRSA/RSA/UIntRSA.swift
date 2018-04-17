@@ -13,7 +13,7 @@ public enum UIntRSA {}
 
 extension UIntRSA: RSAProtocol {
     public typealias UInteger = UInt
-    public typealias Keys = RSAKeys
+    public typealias Keys = UIntRSAKeys
     
     static func transform(_ block: UInteger, with parameters: TransformationParameters) -> UInteger {
         return block.power(parameters.exponent, modulo: parameters.modulo.positive)

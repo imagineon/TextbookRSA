@@ -41,7 +41,7 @@ extension RSAKeysProtocol {
     }
 }
 
-extension RSAKeys {
+extension UIntRSAKeys {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: RSAKeysProtocolCodingKeys.self)
         let pValue = try container.decode(RSA.UInteger.self, forKey: .privateP)

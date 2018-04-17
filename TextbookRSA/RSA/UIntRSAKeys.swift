@@ -1,5 +1,5 @@
 //
-//  RSAKeys.swift
+//  UIntRSAKeys.swift
 //  TextbookRSA
 //
 //  Created by Tomás Silveira Salles on 09.04.18.
@@ -14,7 +14,7 @@ extension RSAKeysProtocol {
     }
 }
 
-public struct RSAKeys: RSAKeysProtocol {
+public struct UIntRSAKeys: RSAKeysProtocol {
     public typealias RSA = UIntRSA
     
     public let `private`: (p: RSA.GreaterThanOne, q: RSA.GreaterThanOne)
@@ -29,19 +29,19 @@ public struct RSAKeys: RSAKeysProtocol {
         
         repeat {
             let minP = UInt(2)
-            let maxP = RSAKeys.smallestPrimeFactorUpperBound
+            let maxP = UIntRSAKeys.smallestPrimeFactorUpperBound
             privateP = UInt.randomPrimeInRange(min: minP, count: try! Math.Positive(UInt32(maxP - minP)))
             
             let minQ = privateP.value + 1
-            let maxQ = RSAKeys.publicKeyUpperBound / privateP.value
+            let maxQ = UIntRSAKeys.publicKeyUpperBound / privateP.value
             privateQ = UInt.randomPrimeInRange(min: minQ, count: try! Math.Positive(UInt32(maxQ - minQ)))
-        } while !RSAKeys.areValidPrivateKeys(privateP: privateP, privateQ: privateQ)
+        } while !UIntRSAKeys.areValidPrivateKeys(privateP: privateP, privateQ: privateQ)
 
         self.private = (p: privateP, q: privateQ)
     }
     
     init(privateP: RSA.GreaterThanOne, privateQ: RSA.GreaterThanOne) throws {
-        guard RSAKeys.areValidPrivateKeys(privateP: privateP, privateQ: privateQ) else {
+        guard UIntRSAKeys.areValidPrivateKeys(privateP: privateP, privateQ: privateQ) else {
             throw Error.invalidArguments
         }
         

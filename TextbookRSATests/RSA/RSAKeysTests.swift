@@ -11,16 +11,16 @@ import XCTest
 
 class RSAKeysTests: XCTestCase {
     func testEulerTotient() {
-        let keys_2_3 = try! RSAKeys(privateP: try! .init(2), privateQ: try! .init(3))
+        let keys_2_3 = try! UIntRSAKeys(privateP: try! .init(2), privateQ: try! .init(3))
         XCTAssertEqual(keys_2_3.eulerTotient.value, 1 * 2)
-        let keys_5_7 = try! RSAKeys(privateP: try! .init(5), privateQ: try! .init(7))
+        let keys_5_7 = try! UIntRSAKeys(privateP: try! .init(5), privateQ: try! .init(7))
         XCTAssertEqual(keys_5_7.eulerTotient.value, 4 * 6)
     }
     
     func testAreValidPrivateKeys() {
-        let primes = RSAKeys().private
-        XCTAssertFalse(RSAKeys.areValidPrivateKeys(privateP: primes.p, privateQ: primes.p))
-        XCTAssertFalse(RSAKeys.areValidPrivateKeys(privateP: primes.q, privateQ: primes.q))
+        let primes = UIntRSAKeys().private
+        XCTAssertFalse(UIntRSAKeys.areValidPrivateKeys(privateP: primes.p, privateQ: primes.p))
+        XCTAssertFalse(UIntRSAKeys.areValidPrivateKeys(privateP: primes.q, privateQ: primes.q))
     }
     
     func testPublicKeyUpperBound() {
@@ -29,7 +29,7 @@ class RSAKeysTests: XCTestCase {
          the public key be at most the square root of `UInt.max`. On the other hand, we want to use primes as large
          as possible, so we want our upper bound to be as close as possible to this square root.
          */
-        let bound = RSAKeys.publicKeyUpperBound
+        let bound = UIntRSAKeys.publicKeyUpperBound
         XCTAssertLessThanOrEqual(bound, UInt(UInt32.max))
         XCTAssertFalse(bound.multipliedReportingOverflow(by: bound).overflow)
         
@@ -38,8 +38,8 @@ class RSAKeysTests: XCTestCase {
     }
     
     func testSmallestPrimeFactorUpperBound() {
-        let primeFactorBound = RSAKeys.smallestPrimeFactorUpperBound
-        let publicKeyBound = RSAKeys.publicKeyUpperBound
+        let primeFactorBound = UIntRSAKeys.smallestPrimeFactorUpperBound
+        let publicKeyBound = UIntRSAKeys.publicKeyUpperBound
         
         let (square, overflow) = primeFactorBound.multipliedReportingOverflow(by: primeFactorBound)
         XCTAssertFalse(overflow)
@@ -80,9 +80,9 @@ class RSAKeysTests: XCTestCase {
     }
     
     func testEquality() {
-        let keys_5_7 = try! RSAKeys(privateP: try! .init(5), privateQ: try! .init(7))
-        let keys_5_7_again = try! RSAKeys(privateP: try! .init(5), privateQ: try! .init(7))
-        let keys_7_5 = try! RSAKeys(privateP: try! .init(7), privateQ: try! .init(5))
+        let keys_5_7 = try! UIntRSAKeys(privateP: try! .init(5), privateQ: try! .init(7))
+        let keys_5_7_again = try! UIntRSAKeys(privateP: try! .init(5), privateQ: try! .init(7))
+        let keys_7_5 = try! UIntRSAKeys(privateP: try! .init(7), privateQ: try! .init(5))
         
         XCTAssertEqual(keys_5_7, keys_5_7_again)
         XCTAssertEqual(keys_5_7, keys_7_5)

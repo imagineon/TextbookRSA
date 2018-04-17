@@ -17,7 +17,7 @@
 		7C30B0DC207B5CBB00482BEC /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C30B0DB207B5CBB00482BEC /* Errors.swift */; };
 		7C30B0DE207B5E2900482BEC /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C30B0DD207B5E2900482BEC /* Math.swift */; };
 		7C30B0E3207B621100482BEC /* PrimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C30B0E2207B621100482BEC /* PrimeTests.swift */; };
-		7C30B0E5207B726800482BEC /* RSAKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C30B0E4207B726800482BEC /* RSAKeys.swift */; };
+		7C30B0E5207B726800482BEC /* UIntRSAKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C30B0E4207B726800482BEC /* UIntRSAKeys.swift */; };
 		7C30B0E7207B729000482BEC /* UIntRSA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C30B0E6207B729000482BEC /* UIntRSA.swift */; };
 		7C48B15F207E282300F0C05D /* CryptoRandom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C48B15E207E282300F0C05D /* CryptoRandom.swift */; };
 		7C48B161207F53F700F0C05D /* RSAKeysTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C48B160207F53F700F0C05D /* RSAKeysTests.swift */; };
@@ -70,7 +70,7 @@
 		7C30B0DB207B5CBB00482BEC /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		7C30B0DD207B5E2900482BEC /* Math.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
 		7C30B0E2207B621100482BEC /* PrimeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimeTests.swift; sourceTree = "<group>"; };
-		7C30B0E4207B726800482BEC /* RSAKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSAKeys.swift; sourceTree = "<group>"; };
+		7C30B0E4207B726800482BEC /* UIntRSAKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIntRSAKeys.swift; sourceTree = "<group>"; };
 		7C30B0E6207B729000482BEC /* UIntRSA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIntRSA.swift; sourceTree = "<group>"; };
 		7C48B15E207E282300F0C05D /* CryptoRandom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoRandom.swift; sourceTree = "<group>"; };
 		7C48B160207F53F700F0C05D /* RSAKeysTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSAKeysTests.swift; sourceTree = "<group>"; };
@@ -188,7 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				7C30B0D7207B521500482BEC /* RSAProtocol.swift */,
-				7C30B0E4207B726800482BEC /* RSAKeys.swift */,
+				7C30B0E4207B726800482BEC /* UIntRSAKeys.swift */,
 				7C30B0E6207B729000482BEC /* UIntRSA.swift */,
 			);
 			path = RSA;
@@ -415,7 +415,7 @@
 				7CD56D29208210E3008469C4 /* PeriodOracle.swift in Sources */,
 				7C30B0DA207B548200482BEC /* Prime.swift in Sources */,
 				7C30B0DE207B5E2900482BEC /* Math.swift in Sources */,
-				7C30B0E5207B726800482BEC /* RSAKeys.swift in Sources */,
+				7C30B0E5207B726800482BEC /* UIntRSAKeys.swift in Sources */,
 				7CD56D2D20822E94008469C4 /* PeriodDecrypter.swift in Sources */,
 				7C5933D0207CD153008801DE /* ModularInverse.swift in Sources */,
 				7C48B15F207E282300F0C05D /* CryptoRandom.swift in Sources */,

@@ -125,8 +125,8 @@ class CodabilityTests: XCTestCase {
         
         let jsonStringLargeFactors = """
             {
-                "prime_p": \(RSAKeys.smallestPrimeFactorUpperBound + 1),
-                "prime_q": \(RSAKeys.smallestPrimeFactorUpperBound + 2)
+                "prime_p": \(UIntRSAKeys.smallestPrimeFactorUpperBound + 1),
+                "prime_q": \(UIntRSAKeys.smallestPrimeFactorUpperBound + 2)
             }
         """
         

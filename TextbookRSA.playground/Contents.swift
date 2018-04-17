@@ -115,3 +115,41 @@ print()
 let decryptedTextMessage = decrypter.decryptText(encryptedTextMessage)
 
 print("Encrypting + decrypting text message: \(success(textMessage == decryptedTextMessage))")
+
+print()
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Keys:
+// Generate small.
+
+let smallKeys = UIntRSA.Keys.small(maxPrime: 100)
+
+print("Small keys: \(smallKeys)")
+
+print()
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// PeriodDecrypter:
+// Initialize with public key, decrypt to data and decrypt to text.
+
+let smallEncryptionParameters = smallKeys.generateEncryptionParameters()
+
+print("Small encryption parameters: \(smallEncryptionParameters)")
+
+let smallEncryptedDataMessage = Encrypter.encrypt(dataMessage, parameters: smallEncryptionParameters)
+
+print("Data message, encrypted with small parameters: \(smallEncryptedDataMessage)")
+
+let periodDecrypter = PeriodDecrypter(publicKey: smallKeys.public)
+
+let smallPeriodDecryptedDataMessage = periodDecrypter.decrypt(smallEncryptedDataMessage)
+
+print("Decrypting data message with PeriodDecrypter: \(success(dataMessage == smallPeriodDecryptedDataMessage))")
+
+let smallEncryptedTextMessage = Encrypter.encrypt(textMessage, parameters: smallEncryptionParameters)
+
+print("Text message, encrypted with small parameters: \(smallEncryptedTextMessage)")
+
+let smallPeriodDecryptedTextMessage = periodDecrypter.decryptText(smallEncryptedTextMessage)
+
+print("Decrypting text message with PeriodDecrypter: \(success(textMessage == smallPeriodDecryptedTextMessage))")

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct ECBEncryptedData<Block: Equatable & Codable, UInteger: UnsignedInteger & Codable>: Codable, Equatable {
+public struct ECBEncryptedData<Block: Equatable & Codable, UInteger: UnsignedInteger & Codable>: Codable, Equatable, CustomStringConvertible {
     public let blocks: [Block]
     public let encryptionExponent: UInteger
 }
@@ -16,6 +16,10 @@ public struct ECBEncryptedData<Block: Equatable & Codable, UInteger: UnsignedInt
 extension ECBEncryptedData {
     public static func ==(lhs: ECBEncryptedData, rhs: ECBEncryptedData) -> Bool {
         return (lhs.blocks == rhs.blocks && lhs.encryptionExponent == rhs.encryptionExponent)
+    }
+    
+    public var description: String {
+        return "ECBEncryptedData(blocks: \(blocks), encryptionExponent: \(encryptionExponent))"
     }
 }
 

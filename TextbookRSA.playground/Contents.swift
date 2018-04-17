@@ -1,52 +1,117 @@
 import TextbookRSA
 
-let keys = UIntRSA.Keys()
+// Helper methods:
 
-print(keys.private.p.value)
-print(keys.private.q.value)
-print(keys.public.value)
+func success(_ value: Bool) -> String {
+    return value ? "successful" : "failed"
+}
+
+func assertPublic<T>(_ value: T) {
+    // NOP
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Keys:
+// Generate, access public members, print, encode as json and decode from json.
+
+let keys = UIntRSA.Keys()
+assertPublic(keys.private.p.value)
+assertPublic(keys.private.q.value)
+assertPublic(keys.public.value)
+
+print("Keys: \(keys)")
 
 let encodedKeys = try JSONEncoder().encode(keys)
 let encodedKeysString = String(data: encodedKeys, encoding: .utf8)
-print(String(describing: encodedKeysString))
+
+print("Keys as json: \(encodedKeysString ?? "nil")")
+
 let decodedKeys = try JSONDecoder().decode(UIntRSA.Keys.self, from: encodedKeys)
-print(decodedKeys == keys)
 
-let decrypter = Decrypter(keys: keys)
+print("Encoding + decoding keys: \(success(decodedKeys == keys))")
 
-print(decrypter.keys)
+print()
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Encryption parameters:
+// Generate from keys, access public members, print, encode as json and decode from json.
 
 let encryptionParms = keys.generateEncryptionParameters()
+assertPublic(encryptionParms.modulo)
+assertPublic(encryptionParms.exponent)
 
-print(encryptionParms.modulo)
-print(encryptionParms.exponent)
+print("Encryption parameters: \(encryptionParms)")
 
 let encodedEncryptionParms = try JSONEncoder().encode(encryptionParms)
 let encodedEncryptionParmsString = String(data: encodedEncryptionParms, encoding: .utf8)
-print(String(describing: encodedEncryptionParmsString))
+
+print("Encryption parameters as json: \(encodedEncryptionParmsString ?? "nil")")
+
 let decodedEncryptionParms = try JSONDecoder().decode(UIntRSA.TransformationParameters.self, from: encodedEncryptionParms)
-print(decodedEncryptionParms == encryptionParms)
+
+print("Encoding + decoding encryption parameters: \(success(decodedEncryptionParms == encryptionParms))")
+
+print()
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Encrypter:
+// Encrypt data.
+//
+// ECBEncryptedData:
+// Access public members, print, encode as json and decode from json.
 
 let dataMessage = Data(bytes: (0 ..< 10).map { _ in UInt8(arc4random_uniform(UInt32(UInt8.max) + 1)) })
-let encryptedDataMessage = Encrypter.encrypt(dataMessage, parameters: encryptionParms)
 
-print(encryptedDataMessage.blocks)
-print(encryptedDataMessage.encryptionExponent)
+print("Data message (bytes): \(dataMessage.map { $0 })")
+
+let encryptedDataMessage = Encrypter.encrypt(dataMessage, parameters: encryptionParms)
+assertPublic(encryptedDataMessage.blocks)
+assertPublic(encryptedDataMessage.encryptionExponent)
+
+print("Data message, encrypted: \(encryptedDataMessage)")
 
 let encodedEncryptedDataMessage = try JSONEncoder().encode(encryptedDataMessage)
 let encodedEncryptedDataMessageString = String(data: encodedEncryptedDataMessage, encoding: .utf8)
-print(String(describing: encodedEncryptedDataMessageString))
+
+print("Data message, encrypted, as json: \(encodedEncryptedDataMessageString ?? "nil")")
+
 let decodedEncryptedDataMessage = try JSONDecoder().decode(Encrypter.EncryptedData.self, from: encodedEncryptedDataMessage)
-print(decodedEncryptedDataMessage == encryptedDataMessage)
+
+print("Encoding + decoding encrypted data message: \(success(decodedEncryptedDataMessage == encryptedDataMessage))")
+
+print()
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Decrypter:
+// Initialize with keys, access public members and decrypt to data.
+
+let decrypter = Decrypter(keys: keys)
+assertPublic(decrypter.keys)
 
 let decryptedDataMessage = decrypter.decrypt(encryptedDataMessage)
-print(dataMessage == decryptedDataMessage)
 
-let textMessage = "The quick brown 🦊 jumps over the lazy dog"
+print("Encrypting + decrypting data message: \(success(dataMessage == decryptedDataMessage))")
+
+print()
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Encrypter:
+// Encrypt text.
+
+let textMessage = "The quick brown 🦊 jumps over the lazy dog."
+
+print("Text message: \"\(textMessage)\"")
+
 let encryptedTextMessage = Encrypter.encrypt(textMessage, parameters: encryptionParms)
 
-print(encryptedTextMessage.blocks)
-print(encryptedTextMessage.encryptionExponent)
+print("Text message, encrypted: \(encryptedTextMessage)")
+
+print()
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+// Decrypter:
+// Decrypt to text.
 
 let decryptedTextMessage = decrypter.decryptText(encryptedTextMessage)
-print(textMessage == decryptedTextMessage)
+
+print("Encrypting + decrypting text message: \(success(textMessage == decryptedTextMessage))")

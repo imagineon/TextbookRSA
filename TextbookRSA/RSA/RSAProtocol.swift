@@ -19,7 +19,7 @@ extension RSATransformationParameters {
     }
 }
 
-public protocol RSAKeysProtocol: Codable, Equatable {
+public protocol RSAKeysProtocol: Codable, Equatable, CustomStringConvertible {
     associatedtype RSA: RSAProtocol
     
     /// The two (secret) prime factors of the public key.
@@ -37,6 +37,10 @@ extension RSAKeysProtocol {
     public static func ==(lhs: Self, rhs: Self) -> Bool {
         return (lhs.private.p == rhs.private.p && lhs.private.q == rhs.private.q) ||
             (lhs.private.p == rhs.private.q && lhs.private.q == rhs.private.p)
+    }
+    
+    public var description: String {
+        return "RSAKeys(primes: (p: \(self.private.p), q: \(self.private.q)))"
     }
 }
 

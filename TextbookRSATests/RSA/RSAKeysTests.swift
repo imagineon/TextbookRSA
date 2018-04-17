@@ -18,7 +18,7 @@ class RSAKeysTests: XCTestCase {
     }
     
     func testAreValidPrivateKeys() {
-        let primes = UIntRSAKeys().private
+        let primes = UIntRSAKeys().primes
         XCTAssertFalse(UIntRSAKeys.areValidPrivateKeys(privateP: primes.p, privateQ: primes.p))
         XCTAssertFalse(UIntRSAKeys.areValidPrivateKeys(privateP: primes.q, privateQ: primes.q))
     }

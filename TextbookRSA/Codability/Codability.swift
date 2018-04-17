@@ -36,8 +36,8 @@ fileprivate enum RSAKeysProtocolCodingKeys: String, CodingKey {
 extension RSAKeysProtocol {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: RSAKeysProtocolCodingKeys.self)
-        try container.encode(self.private.p.value, forKey: .privateP)
-        try container.encode(self.private.q.value, forKey: .privateQ)
+        try container.encode(primes.p.value, forKey: .privateP)
+        try container.encode(primes.q.value, forKey: .privateQ)
     }
 }
 

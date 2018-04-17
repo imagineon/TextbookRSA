@@ -81,8 +81,8 @@ class CodabilityTests: XCTestCase {
         let validKeys = try? JSONDecoder().decode(UIntRSA.Keys.self, from: validJsonData)
         XCTAssertNotNil(validKeys)
         if let validKeys = validKeys {
-            XCTAssertEqual(validKeys.private.p.value, 5)
-            XCTAssertEqual(validKeys.private.q.value, 7)
+            XCTAssertEqual(validKeys.primes.p.value, 5)
+            XCTAssertEqual(validKeys.primes.q.value, 7)
         }
         
         let jsonStringNoQ = """

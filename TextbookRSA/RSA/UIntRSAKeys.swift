@@ -10,17 +10,17 @@ import Foundation
 
 extension RSAKeysProtocol {
     var eulerTotient: RSA.Positive {
-        return self.private.p.predecessor * self.private.q.predecessor
+        return primes.p.predecessor * primes.q.predecessor
     }
 }
 
 public struct UIntRSAKeys: RSAKeysProtocol {
     public typealias RSA = UIntRSA
     
-    public let `private`: (p: RSA.GreaterThanOne, q: RSA.GreaterThanOne)
+    public let primes: (p: RSA.GreaterThanOne, q: RSA.GreaterThanOne)
     
     public var `public`: RSA.GreaterThanOne {
-        return self.private.p * self.private.q
+        return primes.p * primes.q
     }
     
     public init() {
@@ -37,7 +37,7 @@ public struct UIntRSAKeys: RSAKeysProtocol {
             privateQ = UInt.randomPrimeInRange(min: minQ, count: try! Math.Positive(UInt32(maxQ - minQ)))
         } while !UIntRSAKeys.areValidPrivateKeys(privateP: privateP, privateQ: privateQ)
 
-        self.private = (p: privateP, q: privateQ)
+        self.primes = (p: privateP, q: privateQ)
     }
     
     init(privateP: RSA.GreaterThanOne, privateQ: RSA.GreaterThanOne) throws {
@@ -45,7 +45,7 @@ public struct UIntRSAKeys: RSAKeysProtocol {
             throw Error.invalidArguments
         }
         
-        self.private = (p: privateP, q: privateQ)
+        self.primes = (p: privateP, q: privateQ)
     }
     
     public func generateEncryptionParameters() -> RSA.TransformationParameters {

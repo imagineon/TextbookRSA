@@ -27,7 +27,7 @@ public protocol RSAKeysProtocol: Codable, Equatable, CustomStringConvertible {
     associatedtype RSA: RSAProtocol
     
     /// The two (secret) prime factors of the public key.
-    var `private`: (p: RSA.GreaterThanOne, q: RSA.GreaterThanOne) { get }
+    var primes: (p: RSA.GreaterThanOne, q: RSA.GreaterThanOne) { get }
     var `public`: RSA.GreaterThanOne { get }
     
     /// Generate key-pair by choosing prime factors randomly.
@@ -39,12 +39,12 @@ public protocol RSAKeysProtocol: Codable, Equatable, CustomStringConvertible {
 
 extension RSAKeysProtocol {
     public static func ==(lhs: Self, rhs: Self) -> Bool {
-        return (lhs.private.p == rhs.private.p && lhs.private.q == rhs.private.q) ||
-            (lhs.private.p == rhs.private.q && lhs.private.q == rhs.private.p)
+        return (lhs.primes.p == rhs.primes.p && lhs.primes.q == rhs.primes.q) ||
+            (lhs.primes.p == rhs.primes.q && lhs.primes.q == rhs.primes.p)
     }
     
     public var description: String {
-        return "RSAKeys(primes: (p: \(self.private.p), q: \(self.private.q)))"
+        return "RSAKeys(primes: (p: \(primes.p), q: \(primes.q)))"
     }
 }
 

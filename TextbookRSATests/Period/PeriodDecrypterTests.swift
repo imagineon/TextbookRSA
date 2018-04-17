@@ -28,7 +28,7 @@ class PeriodDecrypterTests: XCTestCase {
             let coprimeBlock = PeriodDecrypterTests.block(coprimeTo: try! .init(UInt32(keys.public.value)))
             XCTAssertNil(decrypter.tryToExtractKeys(from: coprimeBlock), "keys: \(keys) -- coprimeBlock: \(coprimeBlock)")
         
-            let revealingBlock = keys.private.p.value * (keys.private.q.value / 2)
+            let revealingBlock = keys.primes.p.value * (keys.primes.q.value / 2)
         
             guard let revealedKeys = decrypter.tryToExtractKeys(from: revealingBlock) else {
                 XCTFail("Could not extract keys even though the block was not coprime with the public key. - keys: \(keys) -- revealingBlock: \(revealingBlock)")
@@ -94,7 +94,7 @@ class PeriodDecrypterTests: XCTestCase {
             
             XCTAssertTrue(successOnCoprimeBlock, "Could not decrypt even though the block was coprime with the public key. - keys: \(keys) -- encryptionParms: \(encryptionParms) -- coprimeBlock: \(coprimeBlock) -- encryptedCoprimeBlock: \(encryptedCoprimeBlock) -- decryptedCoprimeBlock: \(String(describing: decryptedCoprimeBlock))")
             
-            let revealingBlock = keys.private.p.value * (keys.private.q.value / 2)
+            let revealingBlock = keys.primes.p.value * (keys.primes.q.value / 2)
             let encryptedRevealingBlock = UIntRSA.transform(revealingBlock, with: encryptionParms)
             let decryptedRevealingBlock = decrypter.decrypt(block: encryptedRevealingBlock, encryptionExponent: encryptionParms.exponent)
             let successOnRevealingBlock: Bool = {

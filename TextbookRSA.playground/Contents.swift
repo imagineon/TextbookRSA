@@ -15,8 +15,8 @@ func assertPublic<T>(_ value: T) {
 // Generate, access public members, print, encode as json and decode from json.
 
 let keys = UIntRSA.Keys()
-assertPublic(keys.private.p.value)
-assertPublic(keys.private.q.value)
+assertPublic(keys.primes.p.value)
+assertPublic(keys.primes.q.value)
 assertPublic(keys.public.value)
 
 print("Keys: \(keys)")

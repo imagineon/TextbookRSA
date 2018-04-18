@@ -3,11 +3,26 @@ A textbook implementation of RSA encryption, for teaching purposes.
 
 > DON'T YOU DARE USE THIS FRAMEWORK FOR REAL-WORLD ENCRYPTION!
 
+- [Introduction](#introduction)
+- [Use of ECB](#ecb)
+- [Sending a secret message](#normal-use)
+	- [Generating keys](#keys)
+	- [Generating and sending encryption parameters](#encryption-parameters)
+	- [Encrypting and sending data/text](#encrypting)
+	- [Decrypting with private keys](#decrypting-with-keys)
+- [Eavesdropping and decrypting with a period finder](#decrypting-with-period)
+- [Installing](#installing)
+	- [CocoaPods](#cocoapods)
+	- [Swift Package Manager](#spm)
+- [License](#license)
+
+<a name="introduction"></a>
+
 TextbookRSA is a framework written in `swift` with the goal of providing a (very) simplified and readable implementation of RSA encryption for beginners. On top of that, it contains an implementation of "decryption through period finding", which shows how RSA encryption could be broken if one had a fast period-finding oracle (e.g. a quantum computer with an implementation of Shor's algorithm).
 
 One of the most important aspects of RSA encryption is the *length* of the public key. Modern standards require 2048 bits or more, while encryption with 1024 bits is still in use but slightly discouraged, and using 512 bits is already considered quite dangerous. In this framework, the key length is never more than 32 bits, so I reiterate: DON'T YOU DARE USE THIS FRAMEWORK FOR REAL-WORLD ENCRYPTION! The reason why our keys are so short, is because we didn't want to implement a "big integer" type (we just use the existing types `UInt` and `UInt32`). Large-integer arithmetics can be very interesting, but it is not conceptually part of RSA encryption, and our goal here was to focus on the fundamentals.
 
-## ECB
+## <a name="ecb"></a> ECB
 
 RSA encryption is what is called *asymmetric* or *public key* encryption. It encrypts *blocks* (which are simply integers) individually and these must be smaller than the public key. In particular, the limited size of the blocks means that we can only send very short messages via RSA.
 
@@ -15,7 +30,7 @@ Unfortunately, this framework would be rather boring if we could only encrypt so
 
 Again, this was added only to make the use of the framework more interesting and palpable, but it is strongly discouraged for real-world applications. Using RSA in block cypher schemes is generally a bad idea, as well as very inefficient, and even with other encryption protocols ECB is a bad and outdated choice. It is, however, the simplest to understand and to implement.
 
-## Alice wants to send Bob a secret message
+## <a name="normal-use"></a> Alice wants to send Bob a secret message
 
 Let us go through a typical exchange using RSA and exemplify each step using our framework.
 
@@ -27,7 +42,7 @@ Currently the only implementation of `RSAProtocol` is `UIntRSA`, so we may start
 typealias RSA = UIntRSA
 ```
 
-### Step 1: Bob generates and saves his keys
+### <a name="keys"></a> Step 1: Bob generates and saves his keys
 
 ```swift
 let keys = RSA.Keys()
@@ -41,7 +56,7 @@ let keysJSON = try JSONEncoder().encode(keys)
 // ... store `keysJSON` (type `Data`) somewhere (safe) on the computer.
 ```
 
-### Step 2: Bob generates encryption parameters and sends them to Alice
+### <a name="encryption-parameters"></a> Step 2: Bob generates encryption parameters and sends them to Alice
 
 ```swift
 let encryptionParms = keys.generateEncryptionParameters()
@@ -55,7 +70,7 @@ let encryptionParmsJSON = try JSONEncoder().encode(encryptionParms)
 // ... send `encryptionParmsJSON` to Alice via e-mail/SMS/smoke signals...
 ```
 
-### Step 3: Alice encrypts her message and sends it to Bob
+### <a name="encrypting"></a> Step 3: Alice encrypts her message and sends it to Bob
 
 Alice receives Bob's (public) message containing the encryption parameters as a JSON file and turns it into an `RSA.TransformationParameters` object again:
 
@@ -89,7 +104,7 @@ let encryptedMessageJSON = try JSONEncoder().encode(encryptedMessage)
 // ... send `encryptedMessageJSON` to Bob via e-mail/SMS/smoke signals...
 ```
 
-### Step 4: Bob decrypts Alice's message
+### <a name="decrypting-with-keys"></a> Step 4: Bob decrypts Alice's message
 
 First, Bob needs to turn the JSON data he received into an `Encrypter.EncryptedData` object again:
 
@@ -124,7 +139,7 @@ If they (publicly) agreed that Alice would send a text message, Bob can use the 
 let message = decrypter.decryptText(encryptedMessage) // `message` is of type `String`
 ```
 
-## Eve tries to decrypt Alice's message
+## <a name="decrypting-with-period"></a> Eve tries to decrypt Alice's message
 
 As in most textbook introductions to RSA, we pretend an eavesdropper called Eve has been listening to the conversation and wants to decrypt Alice's message using only public information (i.e. without knowing the prime factors of the public key). One way this can theoretically be done is if Eve has a fast period oracle for modular exponentiation.
 
@@ -167,11 +182,13 @@ __IMPORTANT:__ Remember how we said that period finding is *really* hard? If you
 let keys = RSA.Keys.small(maxPrime: 100)
 ```
 
-## Installing
+## <a name="installing"></a> Installing
 
-Besides the obvious possibility of cloning the repository manually and using/modifying the source files as you wish, we also support installation via CocoaPods.
+Besides the obvious possibility of cloning the repository manually and using/modifying the source files as you wish, we also support installation via CocoaPods and the Swift Package Manager.
 
-To install using CocoaPods, add the line
+### <a name="cocoapods"></a> CocoaPods
+
+To install TextbookRSA as a pod, add the line
 
 ```ruby
 pod 'TextbookRSA', '~> 0.0.1'
@@ -185,6 +202,22 @@ $ pod install
 
 If you're not familiar with CocoaPods, you can learn all about it [here](http://cocoapods.org).
 
-## License
+### <a name="spm"></a> Swift Package Manager
+
+To install TextbookRSA via SPM, add the dependency
+
+```swift
+.package(url: "https://github.com/imagineon/TextbookRSA.git", from: "0.0.2")
+```
+
+to your `package` constant in `Package.swift` and run
+
+```bash
+$ swift build
+```
+
+If you're not familiar with SPM, you can learn all about it [here](https://swift.org/package-manager/)
+
+## <a name="license"></a> License
 
 TextbookRSA is distributed with an MIT license (click [here](https://github.com/imagineon/TextbookRSA/blob/master/LICENSE) for more details). But have I mentioned it is not meant for real-world applications? DON'T YOU DARE USE THIS FRAMEWORK FOR REAL-WORLD ENCRYPTION!

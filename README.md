@@ -4,7 +4,7 @@ A textbook implementation of RSA encryption, for teaching purposes.
 > DON'T YOU DARE USE THIS FRAMEWORK FOR REAL-WORLD ENCRYPTION!
 
 [![Platforms](https://img.shields.io/cocoapods/p/TextbookRSA.svg)](https://cocoapods.org/pods/TextbookRSA)
-[![License](https://img.shields.io/cocoapods/l/TextbookRSA.svg)](https://raw.githubusercontent.com/imagineon/TextbookRSA/master/LICENSE)
+[![License](https://img.shields.io/cocoapods/l/TextbookRSA.svg)](https://github.com/imagineon/TextbookRSA/blob/master/LICENSE)
 [![CocoaPods compatible](https://img.shields.io/cocoapods/v/TextbookRSA.svg)](https://cocoapods.org/pods/TextbookRSA)
 [![Swift Package Manager compatible](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-brightgreen.svg)](https://swift.org/package-manager/)
 
@@ -221,7 +221,7 @@ to your `package` constant in `Package.swift` and run
 $ swift build
 ```
 
-If you're not familiar with SPM, you can learn all about it [here](https://swift.org/package-manager/)
+If you're not familiar with SPM, you can learn all about it [here](https://swift.org/package-manager/).
 
 ## <a name="license"></a> License
 

@@ -3,6 +3,11 @@ A textbook implementation of RSA encryption, for teaching purposes.
 
 > DON'T YOU DARE USE THIS FRAMEWORK FOR REAL-WORLD ENCRYPTION!
 
+[![Platforms](https://img.shields.io/cocoapods/p/TextbookRSA.svg)](https://cocoapods.org/pods/TextbookRSA)
+[![License](https://img.shields.io/cocoapods/l/TextbookRSA.svg)](https://raw.githubusercontent.com/imagineon/TextbookRSA/master/LICENSE)
+[![CocoaPods compatible](https://img.shields.io/cocoapods/v/TextbookRSA.svg)](https://cocoapods.org/pods/TextbookRSA)
+[![Swift Package Manager compatible](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-brightgreen.svg)](https://swift.org/package-manager/)
+
 - [Introduction](#introduction)
 - [Use of ECB](#ecb)
 - [Sending a secret message](#normal-use)

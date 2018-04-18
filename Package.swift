@@ -12,5 +12,9 @@ import PackageDescription
 
 let package = Package(
     name: "TextbookRSA",
-    exclude: ["TextbookRSATests"]
+    exclude: [
+        "TextbookRSATests",
+        "TextbookRSA.xcworkspace",
+        "TextbookRSA.playground"
+    ]
 )

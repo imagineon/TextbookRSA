@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'TextbookRSA'
-  s.version          = '0.0.1'
+  s.version          = '1.0.0'
   s.summary          = 'A textbook implementation of RSA encryption, for teaching purposes.'
 
   s.description      = <<-DESC
@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Tomás Silveira Salles' => 'ts@imagineon.de' }
   s.source           = { :git => 'https://github.com/imagineon/TextbookRSA.git', :tag => s.version.to_s }
-  # s.social_media_url = 'http://www.imagineon.de/en/' Add article url?
+  s.social_media_url = 'http://www.imagineon.de/en/'
 
   s.platform = :osx
   s.osx.deployment_target = "10.10"

@@ -209,13 +209,19 @@ If you're not familiar with CocoaPods, you can learn all about it [here](http://
 
 ### <a name="spm"></a> Swift Package Manager
 
-To install TextbookRSA via SPM, add the dependency
+To install TextbookRSA via SPM, open `Package.swift`, add the dependency
 
 ```swift
 .package(url: "https://github.com/imagineon/TextbookRSA.git", from: "0.0.2")
 ```
 
-to your `package` constant in `Package.swift` and run
+to your `package` constant and the dependency 
+
+```swift
+"TextbookRSA"
+```
+
+to each target that should use this framework. Then run
 
 ```bash
 $ swift build

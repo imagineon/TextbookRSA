@@ -95,6 +95,7 @@
 		7C761B2720815D5700C427D3 /* Codability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Codability.swift; sourceTree = "<group>"; };
 		7C761B2A20817B6900C427D3 /* CodabilityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodabilityTests.swift; sourceTree = "<group>"; };
 		7CC4ED3E20849531002362D5 /* PeriodDecrypterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodDecrypterTests.swift; sourceTree = "<group>"; };
+		7CCBFD132091C76700CD7F23 /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 		7CD56D232081F836008469C4 /* PeriodOracleProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodOracleProtocol.swift; sourceTree = "<group>"; };
 		7CD56D252081F8E5008469C4 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		7CD56D28208210E3008469C4 /* PeriodOracle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodOracle.swift; sourceTree = "<group>"; };
@@ -125,6 +126,7 @@
 		7C30B0AE207B4DA200482BEC = {
 			isa = PBXGroup;
 			children = (
+				7CCBFD132091C76700CD7F23 /* TODO.md */,
 				7CD56D252081F8E5008469C4 /* README.md */,
 				7C30B0BA207B4DA200482BEC /* TextbookRSA */,
 				7C30B0C5207B4DA200482BEC /* TextbookRSATests */,

@@ -7,7 +7,7 @@
 1. Separate encryption and decryption into different files.
 1. Turn the playground into a playground book, with lots of markdown in the comments, and different parts of the message exchange on different pages. Use resources to provide examples where data files are encrypted (preferrably images, which can be shown on the playground as well). Take a look at Ole Begemann's `whats-new-in-swift-4` playground book. 
 1. In the playground, perhaps use some configuration of the json encoder (e.g. `.prettyPrinted`). Maybe it can be initialized once and used throughout the whole playground.
-1. Adopt the newest swift features. For example, get rid of unnecessary `fileprivate` declarations.
+1. Adopt the newest swift features. For example: Get rid of unnecessary `fileprivate` declarations; Make use of synthesized `Equatable`; Make use of conditional conformance (perhaps for the codable extensions, so that the integer type is only required to be codable when the wrapping type is supposed to be codable, and we can remove the ugly codability constraint on integer types in the `RSAProtocol`, `GreaterThanOne` and so on); Use `compactMap` if appropriate anywhere.
 1. Clean up the code. Re-organize the files. Make it clearer what the public interface is and separate it better from the implementation details. Currently, the files with protocols contain too many protocols, plus some structs, plus some extensions etc. It's too much.  
 1. Solve the issues with random UInt so we never have to work with UInt32.
 1. Search for both prime factors within a fixed range, independently from each other.
